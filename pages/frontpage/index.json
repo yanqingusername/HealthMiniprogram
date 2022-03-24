@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "modalView": "../../Components/modal/modal"
+  },
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark"
+}

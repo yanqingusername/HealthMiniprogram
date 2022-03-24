@@ -1,0 +1,86 @@
+<view class="body" hover-class="none" hover-stop-propagation="false">
+    <view class="header">
+        <view class="bindDate" bindtap="changeTimeBefore">
+            <image src="/images/icons/triangle_left.png" mode="widthFix"></image>
+        </view>
+        <view class="date">
+            <text>{{date}}</text>
+        </view>
+        <view class="bindDate" bindtap="changeTimeNext">
+            <image src="/images/icons/triangle_right.png" mode="widthFix"></image>
+        </view>
+    </view>
+    <view class="number">
+        <view class="sub_number">
+            <view class="">{{totalStudents}}</view>
+            <view class="word">志愿者总数</view>
+            <view class="word">(人)</view>
+        </view>
+        <view class="sub_number">
+            <view class="">{{meetStudents}}</view>
+            <view class="word">完成记录</view>
+            <view class="word">(人)</view>
+        </view>
+        <view class="sub_number">
+            <view class="">{{not_standard}}</view>
+            <view class="word">未达标</view>
+            <view class="word">(人)</view>
+        </view>
+    </view>
+    <view class="record">
+        <view class="">志愿者膳食运动记录</view>
+        <view class="remind" bindtap="remindPersons">一键提醒</view>
+    </view>
+    <view class="nav">
+        <view class="group {{item.isActive ? 'groupActive' : ''}}" wx:for="{{group}}" wx:key="id" bindtap="groupChange" data-index="{{index}}">{{item.value}}</view>
+    </view>
+    <view class="content" wx:for="{{mealInfoList}}" wx:key="*this" wx:for-item="item1" wx:for-index="index1">
+        <view class="content_header" style="height: 96rpx;">
+            <image class="header_img" src="{{item1.gender === 0 ? '/images/icons/boy.png' : '/images/icons/girl.png'}}" mode="widthFix"></image>
+            <view class="name" style="font-weight: bold;">{{item1.name}}</view>
+            <view class="school word" style="border-right: 1rpx solid #A1A1A1;">{{item1.school}}</view>
+            <view class="word" bindtap="">入组</view>
+            <image class="not_pass_img" src="{{item1.meal_info[0].is_meet === 0 ? '/images/icons/true.png' : ''}}" mode="widthFix"></image>
+        </view>
+        <view wx:for="{{item1.meal_info}}" wx:key="*this" wx:for-item="item2" wx:for-index="index2">
+            <view class="meal_type">
+                <view class="">{{item2.meal_type === '1' ? '早餐' : (item2.meal_type === '2' ? '午餐' : (item2.meal_type === '3' ? '晚餐' : '加餐'))}}</view>
+                <view class="word" style="padding-left: 24rpx">{{item2.meal_time}}</view>
+            </view>
+            <!-- <view> -->
+                <!-- <scroll-view class="meal_images" scroll-x="true"> -->
+                <view class="img_box" >
+                    <view wx:for="{{item2.img_url}}" wx:key="*this" wx:for-item="item3" wx:for-index="index3" >
+                        <image data-list="{{item2.img_url}}" data-src="{{item3}}" bindtap="handlePreview" class="img_item_i" src="{{item3}}" mode="widthFix"></image>
+                    </view>
+                </view>
+                    
+                <!-- </scroll-view> -->
+            <!-- </view> -->
+            <view wx:for="{{item2.meal}}" wx:for-item="it">
+                <view class="meal_content">{{it === ': ' ? ' ' : it}}</view>
+            </view>    
+        </view>
+        <!-- <view style="padding-left: 24rpx">
+            <view style="margin-top: 46rpx;font-size: 26rpx;">今日运动</view>
+            <view class="sport">
+                <view class="">今日步数:{{item1.steps === null ? '-' : item1.steps}};</view>
+                <view class="">  　心率:{{item1.heart_rate === null ? '-' : item1.heart_rate}}次/每分;</view>
+                <view class="">  　消耗:{{item1.calorie === null ? '-' : item1.calorie}}千卡;</view>
+            </view>
+        </view> -->
+        <view class="line"></view>
+        <view class="content_bottom">
+            <view data-id="{{item1.id}}" bindtap="remindMeal" class="remindActive">{{item1.meal_info.length === 0 ? '0' : item1.meal_info.length}}/3提醒</view>
+            <!-- 默认都是 -->
+            <!-- 改动为输入框 -->
+            <!-- <picker class="" range="{{notPassReasons}}" range-key="title" value="{{index}}" data-index="{{index1}}" data-id="{{item1.id}}" bindchange="bindPickerChange"> -->
+                <view class="{{item1.meal_info[0].is_meet == 2 ? '' : 'notPassActive'}}" data-index="{{index1}}" data-id="{{item1.id}}" bindtap="{{item1.meal_info[0].is_meet != 0 ? 'tishi' : 'bindPickerChange'}}" >不通过</view>
+                <view class="{{item1.meal_info[0].is_meet == 1 ? '' : 'notPassActive'}}" data-index="{{index1}}" data-id="{{item1.id}}" bindtap="{{item1.meal_info[0].is_meet != 0 ? 'tishi' : 'isPass'}}">通过</view>
+        </view>
+    </view>
+    <view style="display: flex;align-items: center;flex-direction: column;padding-top: 60rpx;" wx:if="{{mealInfoList.length === 0}}">
+        <image class="nodata" src="/images/icons/nodata.png" mode="widthFix"></image>
+        <view class="">暂无数据</view>
+    </view>
+</view>

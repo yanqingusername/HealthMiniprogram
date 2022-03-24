@@ -1,0 +1,42 @@
+{
+  "pages":[
+    "pages/login/login",
+    "pages/frontpage/index",
+    
+    "pages/personal/index",
+    
+    "pages/index/index",
+    "pages/baseInfo/index"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "color": "#999",
+    "selectedColor": "#32cbc3",
+    "backgroundColor": "#F2F2F2",
+    "position": "bottom",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/frontpage/index",
+        "iconPath": "/images/icons/frontpage.png",
+        "selectedIconPath": "/images/icons/frontpage-selected.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/personal/index",
+        "iconPath": "/images/icons/mine.png",
+        "selectedIconPath": "/images/icons/mine-selected.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "cu-custom": "/colorui/components/cu-custom"
+  }
+}

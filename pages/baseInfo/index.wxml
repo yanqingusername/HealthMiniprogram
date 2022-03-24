@@ -1,0 +1,49 @@
+<view class="page">
+  <view class="page flex-col">
+    <view class="section1 flex-col">
+      <view class="block3 flex-row" bindinput="getName">
+        <text class="info1">姓名</text>
+        <input class="info2" placeholder="请填写您的真实姓名" value="{{baseInfo.name}}"disabled="true" ></input>
+      </view>
+      <!-- <view class="hr"></view>
+       <view class="block5 flex-row" bindinput="getSN">
+        <text class="word2">编号</text>
+        <input class="info3" placeholder="请填写编号" value="{{baseInfo.student_number}}" ></input>
+      </view>  -->
+      <!-- <view class="hr"></view> -->
+     <!-- <view class="block7 flex-row">
+        <text class="info4">性别</text>
+        <picker class='my_picker txt1'  value="{{baseInfo.gender==''?null:baseInfo.gender}}" bindchange="typeChange"
+          range="{{typeArr}}">
+          <view class="picker">
+            {{baseInfo.gender===''?'请选择性别':typeArr[baseInfo.gender]}}
+          </view>
+        </picker>
+        <view class="group1 flex-col">
+          <image src="/images/icons/right.png" mode="aspectFill"></image>
+        </view>
+      </view>
+      <view class="hr"></view>
+      <view class="block9 flex-row">
+        <text class="info5">生日</text>
+       <text class="word3">请选择出生日期</text>
+        <picker mode="date" value="{{baseInfo.birth==''?'请选择出生日期':baseInfo.birth}}" bindchange="bindDateChange">
+          <input value="{{baseInfo.birth==''?'请选择出生日期':baseInfo.birth}}" class="word3" disabled="true" />
+        </picker>
+
+        <view class="mod2 flex-col">
+          <image src="/images/icons/right.png" mode="aspectFill"></image>
+        </view>
+     </view>
+      <view class="hr"></view> -->
+      <view class="block3 flex-row" bindinput="getName">
+        <text class="info1">学校</text>
+        <input class="info2" placeholder="请填写您的真实姓名" value="{{baseInfo.school}}"disabled="true" ></input>
+      </view>
+      <view class="hr"></view>
+      <!-- <view class="block13 flex-col">
+        <button class="box1" bindtap="savedata"><text style="color: #fff;">保存</text></button>
+      </view> -->
+    </view>
+  </view>
+</view>

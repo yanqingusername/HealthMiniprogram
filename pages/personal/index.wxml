@@ -1,0 +1,14 @@
+<view class="manager">
+    <image class="manager_header" src="{{avatarUrl == '' ? '/images/icons/head.png' : avatarUrl}}" mode="widthFix"></image>
+    <view class="manager_content">
+        <view class="manager_name">{{name == '' ? '未设置姓名' : name}}</view>
+        <view class="manager_school">{{shool == '' ? '未设置学校' : school + '管理者'}}</view>
+    </view>
+</view>
+<view class="base_info" bindtap="enter_baseInfo">
+    <view class="base_info_content">
+        <text class="" style="font-size: 26rpx;">基本信息</text>
+        <image class="base_info_img" src="/images/icons/right.png" mode="widthFix"></image>
+    </view>
+</view>
+<view class="logout" bindtap="exit">退出登录</view>

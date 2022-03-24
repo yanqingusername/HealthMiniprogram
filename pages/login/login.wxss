@@ -1,0 +1,80 @@
+page {
+    background-color: #FFFFFF;
+}
+
+.P1 {
+    width: 604rpx;
+    margin-right: 73rpx;
+    margin-left: 73rpx;
+}
+
+.P2 {
+    position: relative;
+    box-shadow: 0 1px 0 0 rgba(242, 242, 242, 1);
+}
+
+.P3 {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    bottom: 10rpx;
+    width: 100%;
+}
+
+.font_input {
+    font-family: "SHSCN_Regular";
+    align-self: center;
+    font-size: 32rpx;
+    color: #999999;
+    width: 358rpx;
+    height: 32rpx;
+}
+
+.bt_code {
+    align-self: center;
+    border-radius: 6rpx;
+    opacity: 1.0;
+    display: flex;
+    Justify-content: center;
+    align-items: center;
+    height: 58rpx;
+    width: 176rpx;
+    margin-left: auto;
+}
+
+.font_code {
+    font-family: "SHSCN_Regular";
+    font-size: 32rpx;
+}
+
+.bt_login {
+    display: flex;
+    Justify-content: center;
+    align-items: center;
+    width: 630rpx;
+    height: 88rpx;
+    opacity: 1.0;
+    background-color: #23CBC4;
+    border-radius: 6rpx;
+}
+
+.font_login {
+    font-family: "SHSCN_Regular";
+    font-size: 32rpx;
+    color: #ffffff;
+}
+
+.logo {
+    width: 140rpx;
+    height: 140rpx;
+    margin-top: 188rpx;
+    margin-left: 60rpx;
+}
+
+.title {
+    font-size: 48rpx;
+    color: #23CBC4;
+    margin-left: 60rpx;
+    font-weight: 600;
+    margin-top: 40rpx;
+}

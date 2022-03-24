@@ -1,0 +1,185 @@
+/* pages/frontpage/index.wxss */
+.word {
+    color: #A1A1A1;
+    font-size: 24rpx;
+}
+.body {
+    width: 670rpx;
+    margin: 0 auto;
+    .header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 1;
+        .date {
+            height: 60rpx;
+            width: 200rpx;
+            background-color: rgba(245, 245, 245, 1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 15rpx;
+        }
+        .bindDate {
+            display: flex;
+            width: 80rpx;
+            height: 80rpx;
+            justify-content: center;
+            align-items: center;
+            // margin: 20rpx;
+        }
+        image {
+            width: 37.5%;
+        }
+    }
+    .number {
+        display: flex;
+        .sub_number {
+            display: flex;
+            flex-direction: column;
+            width: 200rpx;
+            height: 200rpx;
+            margin: 15rpx;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0rpx 0rpx 8rpx 0rpx rgba(185, 185, 185, 0.5);
+            border-radius: 10rpx;
+        }
+    }
+    .record {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 60rpx;
+        font-weight: bold;
+        margin-top: 44rpx;
+        .remind {
+            height: 60rpx;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 160rpx;
+            background-color: var(--themeColor);
+            color: #fff;
+            border-radius: 30rpx;
+        }
+    }
+    .nav{
+        display: flex;
+        flex-direction: row;
+        margin-top: 36rpx;
+        height: 54rpx;
+        justify-content: space-between;
+        color: #A1A1A1;
+        .group {
+            display: flex;
+            width: ~'calc(100% + 10rpx)';
+            align-items: center;
+            justify-content: center;
+            font-size: 24rpx;
+            border-radius: 27rpx;
+            // margin-right: 30rpx;
+        }
+        .groupActive {
+            color: #fff;
+            background-color: var(--themeColor);
+        }
+    }
+    .content {
+        // height: 1200rpx;
+        margin-top: 40rpx;
+        box-shadow: 0rpx 0rpx 8rpx 0rpx rgba(185, 185, 185, 0.5);
+        border-radius: 10rpx;
+        .content_header {
+            display: flex;
+            align-items: center;
+            padding-top: 20rpx;
+            padding-left: 20rpx;
+            .header_img {
+                height: 92rpx;
+                width: 92rpx;
+                border-radius: 50%;
+            }
+            view {
+                padding-left: 12rpx;
+                padding-right: 12rpx;
+            }
+            .not_pass_img {
+                width: 92rpx;
+                margin-left: 70rpx;
+            }
+        }
+        .meal_type {
+            display: flex;
+            margin-left: 20rpx;
+            height: 80rpx;
+            align-items: center;
+        }
+        scroll-view ::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+            color: transparent;
+            display: none;
+        }
+        .meal_images {
+            white-space: nowrap;
+            // height: 160rpx;
+            width: 630rpx;
+            // margin-top: 26rpx;
+            padding-left: 20rpx;
+            .meal_image {
+                display: inline-block;
+                width: 160rpx;
+                // height: 160rpx;
+                padding-right: 10rpx;
+            }
+        }
+        .meal_content {
+            padding-left: 24rpx;
+            font-size: 26rpx;
+            color: #A1A1A1;
+        }
+        .sport {
+            display: flex;
+            color: #A1A1A1;
+            margin-right: 20rpx;
+            flex-wrap: wrap;
+            font-size: 26rpx;
+            margin: 32rpx auto;
+        }
+        .line {
+            border-top: 0.5rpx solid #A1A1A1;
+            width: 630rpx;
+            margin: 0 auto;
+        }
+        .content_bottom {
+            display: flex;
+            height: 114rpx;
+            margin: 0 auto;
+            view {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 60rpx;
+                width: 180rpx;
+                border-radius: 30rpx;
+                margin: 22rpx;
+                color: #fff;
+                background-color: var(--themeColor);
+            }
+            .remindActive {
+                background-color: #FC6736;
+            }
+            .notPassActive {
+                border: 1rpx solid var(--themeColor);
+                color: var(--themeColor);
+                background-color: #fff;
+            }
+        }
+    }
+    .nodata {
+        display: flex;
+        justify-content: center;
+        width: 150rpx;
+    }
+}

@@ -1,0 +1,108 @@
+<view class="page">
+  <view class="page flex-col">
+    <view class="bd1 flex-col">
+      <view class="outer3 flex-row">
+        <image class="icon1" bindtap="changeTimeBefore" referrerpolicy="no-referrer" src="/images/icons/triangle_left.png"></image>
+        <view class="section1 flex-col"><text class="info2">{{date}}</text></view>
+
+        <image class="section2 flex-col" bindtap="changeTimeNext" src="/images/icons/triangle_right.png"></image>
+        <text class="span" wx:if="{{digital>0&&digital<=99}}">{{digital}}</text>
+        <text class="span" wx:if="{{digital>99}}">99+</text>
+
+      </view>
+      <view class="outer4 flex-row">
+        <view class="layer2 flex-col">
+          <view class="section3 flex-col">
+            <view>
+              366
+            </view>
+            <view>志愿者总数</view>
+            <view>(人)</view>
+          </view>
+        </view>
+        <view class="layer3 flex-col">
+          <view class="section4 flex-col">
+            <view>
+              {{total}}
+            </view>
+            <view>完成记录</view>
+            <view>(人)</view>
+          </view>
+        </view>
+        <view class="layer4 flex-col">
+          <view class="layer5 flex-col">
+            <view>
+              {{total}}
+            </view>
+            <view>未达标</view>
+            <view>(人)</view>
+          </view>
+        </view>
+      </view>
+      <view class="middle">
+        <view>志愿者膳食记录</view>
+        <view class="remind">一键提醒</view>
+      </view>
+      <view class="skill-sequence-panel-content-wrapper"> 
+        <!--左边虚化-->
+        <view class="hide-content-box hide-content-box-left"></view>
+        <!--右边虚化-->
+        <view class="hide-content-box hide-content-box-right"></view>
+        <!--横向滚动-->
+        <scroll-view class="skill-sequence-panel-content" scroll-x>
+          <view class="skill-sequence-skill-wrapper">
+            低强度训练99999999999999999999999
+          </view>
+          <view class="skill-sequence-skill-wrapper">
+            中等强度训练
+          </view>
+          <view class="skill-sequence-skill-wrapper">
+            高强度间歇训练
+          </view>
+        </scroll-view>
+      </view>
+      <view class="P1">
+        <block wx:for="{{mealInfoList}}">
+            <view class="P2 app_font" bindtap="toInfo" data-id = "{{item.id}}" data-type="{{item.type}}">
+                <view class="group_food"> 
+                  <view class="food_title" wx:if="{{item.meal_type==1}}">早餐</view>    
+                  <view class="food_title" wx:if="{{item.meal_type==2}}">午餐</view>    
+                  <view class="food_title" wx:if="{{item.meal_type==3}}">晚餐</view>    
+                  <view class="food_title" wx:if="{{item.meal_type==4}}">加餐</view>    
+                  <view class="food_time">{{item.mealTime}}</view>
+                </view>
+                <view class="group_column">
+                  <view class="group_food_2">
+                    <view class="group_class_1" wx:for="{{item.meal_content_arr}}">
+                      {{item}}
+                    </view>
+                  </view>
+                  <view class="group_food_2">
+                    <view class="group_class_1"  wx:for="{{item.intake_amount_arr}}">
+                      {{item}}
+                    </view>
+                  </view>
+                </view>
+                <block wx:if="{{item.img_url.length!=0}}">
+                  <view class="img_box">
+                    <view class="img_item" wx:for="{{item.img_url}}" wx:for-item="item">
+                      <image bindtap="previewImg" data-src="{{item}}" class="img_item_i" data-index='{{index}}'
+                        src="{{item}}" mode="aspectFill"></image>
+                    </view>
+                  </view>
+                </block>
+                </view>
+              </block>
+            </view>
+        
+        <view hidden wx:if="{{alreadyChecked==true}}">
+            <image class="app_noinfo_img" src="../../images/icons/nodata.png" mode="widthFix"></image>
+            <view class="app_noinfo_desc">{{tip}}</view>
+        </view>
+        <view  wx:if="{{alreadyChecked_temp==true}}">
+            <image class="app_noinfo_img" src="../../images/icons/nodata.png" mode="widthFix"></image>
+            <view class="app_noinfo_desc">{{tip_temp}}</view>
+        </view>
+    </view>
+    </view>
+  </view>
