@@ -41,12 +41,22 @@
 .base_info .base_info_content .base_info_img {
   width: 5%;
 }
+
+.logout_view{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 600rpx;
+}
 .logout {
   display: flex;
-  height: 80rpx;
+  height: 60rpx;
   color: var(--themeColor);
+  border-radius: 20rpx;
   font-size: 26rpx;
-  margin-top: 680rpx;
+  width: 200rpx;
+  border: 1px solid var(--themeColor);
   justify-content: center;
   align-items: center;
+  
 }

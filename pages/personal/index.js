@@ -35,11 +35,14 @@ Page({
         }
     },
     onLoad: function () {
+        let avatarUrl = wx.getStorageSync('avatarUrlHMP');
+        let nickName = wx.getStorageSync('nickNameHMP');
+
         let that = this;
         console.log("进入个人中心")
         that.setData({
-            name: app.globalData.nickName,
-            avatarUrl: app.globalData.avatarUrl,
+            name: nickName,
+            avatarUrl: avatarUrl,
         })
 
         //这里需要获取最新的体检数据，判断是否有新的问卷

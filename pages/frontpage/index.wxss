@@ -121,6 +121,7 @@
 }
 .body .content .content_header .not_pass_img {
   width: 92rpx;
+  height: 92rpx;
   margin-left: 70rpx;
 }
 .body .content .meal_type {

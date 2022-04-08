@@ -11,4 +11,8 @@
         <image class="base_info_img" src="/images/icons/right.png" mode="widthFix"></image>
     </view>
 </view>
-<view class="logout" bindtap="exit">退出登录</view>
+<!-- <view class="logout" bindtap="exit">退出登录</view> -->
+
+<view class="logout_view">
+    <view class="logout" bindtap="exit">退出登录</view>
+</view>

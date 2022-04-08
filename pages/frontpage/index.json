@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "modalView": "../../Components/modal/modal"
+    "modalView": "../../Components/modal/modal",
+    "dialog-cus": "../../Components/dialog-cus/index"
   },
   "enablePullDownRefresh": true,
   "backgroundTextStyle": "dark"

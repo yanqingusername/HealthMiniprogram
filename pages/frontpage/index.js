@@ -38,7 +38,36 @@ Page({
         date:0,
         notPassReasons:[],
         index:0,
-        showModal: true
+        showModal: true,
+        dialogCloseData: {
+			title: "请填写不通过原因",
+			titles: "学生将收到此反馈",
+            ptitle: "请填写不通过原因",
+			cancel: "取消",
+			sure: "确认"
+		},
+		showCloseDialog: false,
+        close_order_num: '',
+        closeIndex: -1,
+        dialogPassData: {
+			title: "温馨提醒",
+			titles: "有什么叮嘱同学的吗？（选填）",
+            ptitle: "有什么叮嘱同学的吗？（选填）",
+			cancel: "取消",
+			sure: "确认"
+		},
+		showPassDialog: false,
+        pass_order_num: '',
+        passIndex: -1,
+
+        showCloseSportDialog: false,
+        close_sport_num: '',
+        closeSportIndex: -1,
+        close_sport_hwid: '',
+        showPassSportDialog: false,
+        pass_sport_num: '',
+        passSportIndex: -1,
+        pass_sport_hwid: '',
     },
     QueryParams: {
         // 默认第一组数据
@@ -255,6 +284,7 @@ Page({
             s_id: e.currentTarget.dataset.id,
             timestamp: this.data.date,
             sender_id: app.globalData.userInfo.id,
+            type: e.currentTarget.dataset.type,
             // send_time: new Date().getTime()
         }
         console.info("提醒个人传参",params);
@@ -428,5 +458,249 @@ Page({
         this.getFoodList();
         this.getTotal();
         // this.getNotReasons();
-    }
+    },
+    /**
+	 * 不通过
+	 */
+	bindCloseOrder(e) {
+		let id = e.currentTarget.dataset.id; //id
+        let closeIndex = e.currentTarget.dataset.index;
+		this.setData({
+			showCloseDialog: true,
+            close_order_num: id,
+            closeIndex: closeIndex
+		});
+	},
+	dialogCloseCancel() {
+		this.setData({
+			showCloseDialog: false
+		});
+	},
+	dialogCloseSure(e) {
+		console.log(e.detail)
+        if(e.detail){
+            this.setData({
+                showCloseDialog: false
+            });
+            //
+            var that=this;
+            let params = {
+                s_id: that.data.close_order_num,
+                reason: e.detail,  //关闭原因
+                is_meet: 2,
+                timestamp: this.data.date,
+                manager_id: app.globalData.userInfo.id
+            }
+            console.info('不通过传参',params);
+            prorequest({url:'/manage/isPass.hn', data: params})
+            .then(result => {
+                console.info('不通过回调',result);
+                if(result.success) {
+                    wx.showToast({
+                        title: '操作成功'
+                    });
+                    var mealInfoList=that.data.mealInfoList;
+                    mealInfoList[that.data.closeIndex].meal_info[0].is_meet=2
+                    that.setData({
+                        mealInfoList,
+                        closeIndex: -1
+                    })
+                    let closeEmpty = that.selectComponent("#closeOrderId");
+                    closeEmpty.empty();
+                } else {
+                    wx.showToast({
+                        title: '请勿重复操作'
+                    });
+                }
+            })
+            this.getTotal();
+        }else{
+            box.showToast("请填写不通过原因");
+        }
+	},
+    /**
+	 * 通过
+	 */
+	bindPassOrder(e) {
+		let id = e.currentTarget.dataset.id; //id
+        let passIndex = e.currentTarget.dataset.index;
+		this.setData({
+			showPassDialog: true,
+            pass_order_num: id,
+            passIndex: passIndex
+		});
+	},
+	dialogPassCancel() {
+		this.setData({
+			showPassDialog: false
+		});
+	},
+	dialogPassSure(e) {
+        let that = this;
+		console.log(e.detail)
+        if(e.detail){
+            this.setData({
+                showPassDialog: false
+            });
+            //
+            let params = {
+                s_id: that.data.pass_order_num,
+                reason: e.detail,  //原因
+                is_meet: 1,
+                timestamp: that.data.date,
+                manager_id: app.globalData.userInfo.id
+            }
+            // 默认是通过,
+            console.info("通过传参",params)
+            prorequest({url:'/manage/isPass.hn', data: params})
+            .then(result => {
+                console.info("通过回调",result)
+                if(result.success) {
+                    wx.showToast({
+                        title: '操作成功'
+                    });
+                    var mealInfoList=that.data.mealInfoList;
+                   mealInfoList[that.data.passIndex].meal_info[0].is_meet=1
+                    that.setData({
+                    mealInfoList,
+                    passIndex: -1
+                    })
+                let passEmpty = that.selectComponent("#passOrderId");
+                    passEmpty.empty();
+                } else {
+                    wx.showToast({
+                        title: '请勿重复操作'
+                    });
+                }
+            })
+            this.getTotal();
+        }else{
+            box.showToast("请填写不通过原因");
+        }
+	},
+    /**
+	 * 运动 不通过
+	 */
+    closeClickSport(e) {
+		let id = e.currentTarget.dataset.id; //id
+        let close_sport_hwid = e.currentTarget.dataset.hwid;
+        let closeSportIndex = e.currentTarget.dataset.index;
+		this.setData({
+			showCloseSportDialog: true,
+            close_sport_num: id,
+            closeSportIndex: closeSportIndex,
+            close_sport_hwid: close_sport_hwid
+		});
+	},
+	dialogCloseSportCancel() {
+		this.setData({
+			showCloseSportDialog: false
+		});
+	},
+	dialogCloseSportSure(e) {
+		console.log(e.detail)
+        if(e.detail){
+            this.setData({
+                showCloseSportDialog: false
+            });
+            //
+            var that=this;
+            let params = {
+                s_id: that.data.close_sport_num,
+                reason: e.detail,  //关闭原因
+                pass: 2,
+                timestamp: this.data.date,
+                manager_id: app.globalData.userInfo.id,
+                hw_id: that.data.close_sport_hwid,
+            }
+            console.info('不通过传参',params);
+            prorequest({url:'/manage/isSportPass.hn', data: params})
+            .then(result => {
+                console.info('不通过回调',result);
+                if(result.success) {
+                    wx.showToast({
+                        title: '操作成功'
+                    });
+                    var mealInfoList=that.data.mealInfoList;
+                    mealInfoList[that.data.closeSportIndex].sportstatus=2
+                    that.setData({
+                        mealInfoList,
+                        closeSportIndex: -1
+                    })
+                    let closeEmpty = that.selectComponent("#closeSportOrderId");
+                    closeEmpty.empty();
+                } else {
+                    wx.showToast({
+                        title: '请勿重复操作'
+                    });
+                }
+            })
+            this.getTotal();
+        }else{
+            box.showToast("请填写不通过原因");
+        }
+	},
+    /**
+	 * 通过
+	 */
+    passClickSport(e) {
+		let id = e.currentTarget.dataset.id; //id
+        let pass_sport_hwid = e.currentTarget.dataset.hwid; //hwid
+        let passSportIndex = e.currentTarget.dataset.index;
+		this.setData({
+			showPassSportDialog: true,
+            pass_sport_num: id,
+            passSportIndex: passSportIndex,
+            pass_sport_hwid: pass_sport_hwid
+		});
+	},
+	dialogPassSportCancel() {
+		this.setData({
+			showPassSportDialog: false
+		});
+	},
+	dialogPassSportSure(e) {
+        let that = this;
+		console.log(e.detail)
+        if(e.detail){
+            this.setData({
+                showPassSportDialog: false
+            });
+            //
+            let params = {
+                s_id: that.data.pass_sport_num,
+                reason: e.detail,  //原因
+                pass: 1,
+                timestamp: that.data.date,
+                manager_id: app.globalData.userInfo.id,
+                hw_id: that.data.pass_sport_hwid,
+            }
+            // 默认是通过,
+            console.info("通过传参",params)
+            prorequest({url:'/manage/isSportPass.hn', data: params})
+            .then(result => {
+                console.info("通过回调",result)
+                if(result.success) {
+                    wx.showToast({
+                        title: '操作成功'
+                    });
+                    var mealInfoList=that.data.mealInfoList;
+                   mealInfoList[that.data.passSportIndex].sportstatus=1
+                    that.setData({
+                    mealInfoList,
+                    passSportIndex: -1
+                    })
+                let passEmpty = that.selectComponent("#passSportOrderId");
+                    passEmpty.empty();
+                } else {
+                    wx.showToast({
+                        title: '请勿重复操作'
+                    });
+                }
+            })
+            this.getTotal();
+        }else{
+            box.showToast("请填写不通过原因");
+        }
+	},
 })

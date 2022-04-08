@@ -57,10 +57,18 @@ function throttle(fn, interval) {
     };
   }
 
+  // 禁止输入表情或特殊字符
+function checkInput(str){
+    var reg = /[^a-zA-Z0-9\u4e00-\u9fa5\u3002\uff0c\uff1a\uff08\uff09\uff1f\u201c\u201d\u3001\uff01,/.!:()?_""—-]/g;
+    str =  str.replace(reg,"");
+    return str;
+}
+
 module.exports = {
     checkPhone: checkPhone,
     list1_inexistence_list2:list1_inexistence_list2,
     isInArray:isInArray,
     exist_arr:exist_arr,
-    throttle:throttle
+    throttle:throttle,
+    checkInput: checkInput
 }

@@ -2,7 +2,7 @@
     <image src="/images/icons/logo.png" class="logo"></image>
     <view  class="title">健康与膳食札记管理</view>
     <view>
-        <form bindsubmit="login">
+        <form>
             <view class="P1">
                 <view class="P2" style="height:187rpx;">
                     <view class="P3">
@@ -12,12 +12,13 @@
                 </view>
                 <view class="P2" style="height:129rpx;">
                     <view class="P3">
-                        <input class='font_input' placeholder='输入验证码' type="number" name="code" maxlength="4" value="{{code}}"></input>
+                        <input class='font_input' bindinput="codeInput" placeholder='输入验证码' type="number" name="code" maxlength="4" value="{{code}}"></input>
                     </view>
                 </view>
             </view>
             <view style="margin-top:159rpx;">
-                <button class='bt_login font_login' open-type="getUserInfo" form-type="submit">登录</button>
+                <!-- <button class='bt_login font_login' open-type="getUserInfo" form-type="submit">登录</button> -->
+                <button class='bt_login font_login' bind:tap="login" form-type="submit">登录</button>
             </view>
         </form>
     </view>
