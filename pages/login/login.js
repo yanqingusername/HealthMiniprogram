@@ -152,11 +152,12 @@ Page({
                 box.showToast("验证码错误");
                 return;
             } 
-            that.getUserProfile();
+            // that.getUserProfile();
             that.toLogin(phone);
         }
     },2000),
     toLogin:function (phone){
+        let that = this;
         console.log("开始登录" + phone);
         var data = {
             openid: app.globalData.openid,
@@ -169,6 +170,7 @@ Page({
                     box.showToast(res.msg);
                     return;
                 }else{
+                    that.getUserProfile();
                     console.log('登录成功')
                     app.globalData.userInfo = res.msg;
                     wx.switchTab({
