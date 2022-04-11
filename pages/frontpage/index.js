@@ -250,7 +250,7 @@ Page({
         console.info("QueryParams=>>>>>>",this.QueryParams);
         let params = {
             // 暂时写死为6
-            id: 6,
+            // id: 6,
             timestamp: this.data.date,
             group: this.QueryParams.groupId,
             pagenum: this.QueryParams.pagenum, //页数

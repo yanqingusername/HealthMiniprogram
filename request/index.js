@@ -9,7 +9,8 @@ export const prorequest = (params) => {
         mask: true
     });
     // 192.168.81.21
-    const baseURL = "http://ygldev.coyotebio-lab.com:8080/HM";
+    // const baseURL = "http://ygldev.coyotebio-lab.com:8080/HM";  // 测试服务器
+    var baseURL = 'https://monitor.coyotebio-lab.com:8443/HM';     // 正式服务器
     return new Promise((resolve, reject) => {
         wx.request({
             ...params,
