@@ -1,0 +1,19 @@
+<view class="page flex-col">
+  <view >
+    <view class="data_view" wx:if="{{expertAdviceList.length > 0}}">
+      <block wx:for="{{expertAdviceList}}" wx:for-item="s" wx:key="index">
+        <view class="layer1 flex-col">
+          <view class="data_title">{{s.create_time}}</view>
+          <view class="data_items">
+            <!-- <view class="data_items_title">{{s.create_time}}</view> -->
+            <text class="data_items_value">{{s.text}}</text>
+          </view>
+        </view>
+      </block>
+    </view>
+    <view wx:else style="display: flex;justify-content: center;align-items: center;padding: 50rpx;">
+        <view>暂无数据</view>
+    </view>
+    <view style="height: 30rpx;"></view>
+  </view>
+</view>

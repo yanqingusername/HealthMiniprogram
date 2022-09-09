@@ -1,0 +1,98 @@
+<view class="page flex-col">
+  <view wx:if="{{type==2}}">
+    <view class="data_view" wx:if="{{heartRateList.length > 0}}">
+      <block wx:for="{{heartRateList}}" wx:for-item="s" wx:key="index">
+        <view class="layer1 flex-col">
+          <view class="data_title">{{s.recordtime}}</view>
+          <!-- <view class="data_items">
+            <view class="data_items_title">平均心率</view>
+            <view class="data_items_value">70次/分</view>
+          </view> -->
+          <view class="data_items">
+            <view class="data_items_title">最高心率</view>
+            <view class="data_items_value">{{s.maxHeartRate}}{{s.rateunit}}</view>
+          </view>
+          <view class="data_items" style="border-bottom: none;">
+            <view class="data_items_title">最低心率</view>
+            <view class="data_items_value">{{s.minHeartRate}}{{s.rateunit}}</view>
+          </view>
+        </view>
+      </block>
+    </view>
+    <view wx:else style="display: flex;justify-content: center;align-items: center;padding: 50rpx;">
+        <view>暂无数据</view>
+    </view>
+    <view style="height: 30rpx;"></view>
+  </view>
+  
+  <view wx:if="{{type==4}}">
+    <view class="data_view" wx:if="{{oxygeninfoList.length > 0}}">
+      <block wx:for="{{oxygeninfoList}}" wx:for-item="s" wx:key="index">
+        <view class="layer1 flex-col">
+          <view class="data_title">{{s.recordtime}}</view>
+          <view class="data_items">
+            <view class="data_items_title">平均血氧</view>
+            <view class="data_items_value">{{s.avgOxygenSaturation}}</view>
+          </view>
+          <view class="data_items">
+            <view class="data_items_title">最高血氧</view>
+            <view class="data_items_value">{{s.maxOxygenSaturation}}</view>
+          </view>
+          <view class="data_items" style="border-bottom: none;">
+            <view class="data_items_title">最低血氧</view>
+            <view class="data_items_value">{{s.minOxygenSaturation}}</view>
+          </view>
+        </view>
+      </block>
+    </view>
+    <view wx:else style="display: flex;justify-content: center;align-items: center;padding: 50rpx;">
+        <view>暂无数据</view>
+    </view>
+    <view style="height: 30rpx;"></view>
+  </view>
+
+  <view wx:if="{{type==1 || type==3}}">
+    <view class="data_view" wx:if="{{workOutinfoList.length > 0}}">
+      <block wx:for="{{workOutinfoList}}" wx:for-item="s" wx:key="index">
+        <view class="layer1 flex-col">
+          <view class="data_title">{{s.time}}</view>
+          <view class="data_items">
+            <view class="data_items_title">消耗热量</view>
+            <view class="data_items_value">{{s.caloriesBurned}}{{s.caloriesBurned_unit}}</view>
+          </view>
+          <view class="data_items">
+            <view class="data_items_title">今日步数</view>
+            <view class="data_items_value">{{s.step}}步</view>
+          </view>
+          <view class="data_items">
+            <view class="data_items_title">运动距离</view>
+            <view class="data_items_value">{{s.distance}}{{s.distance_unit}}</view>
+          </view>
+          <view class="data_items">
+            <view class="data_items_title">步行步数</view>
+            <view class="data_items_value">{{s.walking}}步</view>
+          </view>
+          <view class="data_items">
+            <view class="data_items_title">跑步步数</view>
+            <view class="data_items_value">{{s.running || 0}}步</view>
+          </view>
+          <view class="data_items" wx:if="{{s.swimming}}">
+            <view class="data_items_title">游泳</view>
+            <view class="data_items_value">{{s.swimming}}步</view>
+          </view>
+          
+          <view class="data_items" style="border-bottom: none;">
+            <view class="data_items_title">其他</view>
+            <view class="data_items_value">{{s.other}}步</view>
+          </view>
+        </view>
+      </block>
+    </view>
+    <view wx:else style="display: flex;justify-content: center;align-items: center;padding: 50rpx;">
+        <view>暂无数据</view>
+    </view>
+    <view style="height: 30rpx;"></view>
+  </view>
+ 
+ 
+</view>

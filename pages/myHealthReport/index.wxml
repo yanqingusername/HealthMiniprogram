@@ -1,0 +1,27 @@
+<view class="page flex-col">
+  <view>
+    <view class="data_view">
+      <view class="layer1 flex-col" style="padding: 0rpx;">
+          <view class="data_items" style="border-bottom: none;padding: 20rpx 10rpx 20rpx 30rpx;" bind:tap="bindExpertSuggest" data-type="1">
+            <view class="data_items_title" style="font-size: 36rpx;">专家指导建议</view>
+            <image class="data_items_img" src="/images/icons/right.png" mode="aspectFill"></image>
+          </view>
+      </view>
+
+      
+        <view class="layer1 flex-col">
+          <view class="data_title">健康检查结果</view>
+            <view class="data_items" wx:for="{{reportList}}" wx:key="key" bind:tap="bindInspectResults" data-method="{{item.method}}" data-type="{{item.type}}" data-title="{{item.text}}" data-csstype="{{item.csstype}}">
+              <view class="data_items_title">{{item.text}}</view>
+              <image class="data_items_img" src="/images/icons/right.png" mode="aspectFill" style="margin-right: -20rpx;"></image>
+            </view>
+        </view>
+    </view>
+    
+    <view style="height: 30rpx;"></view>
+  </view>
+  
+  
+ 
+ 
+</view>

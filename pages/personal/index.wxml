@@ -11,6 +11,14 @@
         <image class="base_info_img" src="/images/icons/right.png" mode="widthFix"></image>
     </view>
 </view>
+
+<view class="base_info" bindtap="enter_addDietRecord">
+    <view class="base_info_content">
+        <text class="" style="font-size: 26rpx;">上传午餐图片</text>
+        <image class="base_info_img" src="/images/icons/right.png" mode="widthFix"></image>
+    </view>
+</view>
+
 <!-- <view class="logout" bindtap="exit">退出登录</view> -->
 
 <view class="logout_view">

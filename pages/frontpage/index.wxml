@@ -58,7 +58,7 @@
                         
                     <!-- </scroll-view> -->
                 <!-- </view> -->
-                <view wx:for="{{item2.meal}}" wx:for-item="it">
+                <view wx:for="{{item2.meal}}" wx:for-item="it" wx:key="index4" wx:for-index="index4">
                     <view class="meal_content">{{it === ': ' ? ' ' : it}}</view>
                 </view>    
             </view>
@@ -83,17 +83,17 @@
             <view style="padding: 0rpx 24rpx">
                 <view style="margin-top: 20rpx;font-size: 26rpx;">我的运动</view>
                 <view class="sport" style="display: flex;align-items: center;justify-content: space-between;">
-                    <view class="" style="width: 33%;">今日步数: {{item1.step || '-'}}{{item1.step ? ';' : ''}}</view>
-                    <view class="" style="width: 33%;">消耗: {{item1.caloriesBurned ? item1.caloriesBurned : '-'}}{{item1.caloriesBurned ? '千卡;' : ''}}</view>
-                    <view class="" style="width: 33%;">血氧: {{item1.Oxygen ? item1.Oxygen : '-'}}{{item1.Oxygen ? ';' : ''}}</view>
+                    <view class="" style="width: 33%;" bindtap="enter_sports" data-type="1" data-hwid="{{item1.hw_id}}">今日步数: {{item1.step || '-'}}{{item1.step ? ';' : ''}}</view>
+                    <view class="" style="width: 33%;" bindtap="enter_sports" data-type="3" data-hwid="{{item1.hw_id}}">消耗: {{item1.caloriesBurned ? item1.caloriesBurned : '-'}}{{item1.caloriesBurned ? '千卡;' : ''}}</view>
+                    <view class="" style="width: 33%;" bindtap="enter_sports" data-type="4" data-hwid="{{item1.hw_id}}">血氧: {{item1.Oxygen ? item1.Oxygen : '-'}}{{item1.Oxygen ? ';' : ''}}</view>
                 </view>
                 <view class="sport" style="display: flex;align-items: center;justify-content: space-between;">
-                    <view class="" style="width: 33%;">步行步数: {{item1.walking ? item1.walking : '-'}}{{item1.walking ? ';' : ''}}</view>
-                    <view class="" style="width: 33%;">跑步步数: {{item1.running ? item1.running : '-'}}{{item1.running ? ';' : ''}}</view>
-                    <view class="" style="width: 33%;">爬升步数: {{item1.unknown ? item1.unknown : '-'}}{{item1.unknown ? ';' : ''}}</view>
+                    <view class="" style="width: 33%;" bindtap="enter_sports" data-type="1" data-hwid="{{item1.hw_id}}">步行步数: {{item1.walking ? item1.walking : '-'}}{{item1.walking ? ';' : ''}}</view>
+                    <view class="" style="width: 33%;" bindtap="enter_sports" data-type="1" data-hwid="{{item1.hw_id}}">跑步步数: {{item1.running ? item1.running : '-'}}{{item1.running ? ';' : ''}}</view>
+                    <view class="" style="width: 33%;" bindtap="enter_sports" data-type="1" data-hwid="{{item1.hw_id}}">爬升步数: {{item1.unknown ? item1.unknown : '-'}}{{item1.unknown ? ';' : ''}}</view>
                 </view>
                 <view class="sport">
-                    <view class="">心率: {{item1.HeartRate ? item1.HeartRate : '-'}}{{item1.HeartRate ? '次/每分;' : ''}}</view>
+                    <view class="" bindtap="enter_sports" data-type="2" data-hwid="{{item1.hw_id}}">心率: {{item1.HeartRate ? item1.HeartRate : '-'}}{{item1.HeartRate ? '次/每分;' : ''}}</view>
                 </view>
             </view>
             
@@ -104,6 +104,14 @@
                 <!-- <picker class="" range="{{notPassReasons}}" range-key="title" value="{{index}}" data-index="{{index1}}" data-id="{{item1.id}}" bindchange="bindPickerChange"> -->
                     <view class="{{item1.sportstatus == 2 ? '' : 'notPassActive'}}" data-index="{{index1}}" data-id="{{item1.id}}" data-hwid="{{item1.hw_id}}" bindtap="{{item1.sportstatus != 0 ? 'tishi' : 'closeClickSport'}}" >不通过</view>
                     <view class="{{item1.sportstatus == 1 ? '' : 'notPassActive'}}" data-index="{{index1}}" data-id="{{item1.id}}" data-hwid="{{item1.hw_id}}" bindtap="{{item1.sportstatus != 0 ? 'tishi' : 'passClickSport'}}">通过</view>
+            </view>
+        </view>
+
+        <view>
+            <view class="content_bottom" style="height:100rpx;">
+                <view data-id="{{item1.id}}" data-name="{{item1.name}}" bindtap="enter_healthReport" class="remindActive" style="margin: 10rpx 22rpx 20rpx 22rpx;font-size: 30rpx;">健康报告</view>
+                <view data-id="{{item1.hw_id}}" data-name="{{item1.name}}" bindtap="bindBullRateRange" class="remindActive" style="margin: 10rpx 22rpx 20rpx 22rpx;font-size: 30rpx;">靶心率范围</view>
+                <view data-id="{{item1.id}}" data-name="{{item1.name}}" bindtap="bindHeartRateLineChart" class="remindActive" style="margin: 10rpx 22rpx 20rpx 22rpx;font-size: 30rpx;">心率折线图</view>
             </view>
         </view>
 

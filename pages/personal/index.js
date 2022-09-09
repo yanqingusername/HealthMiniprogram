@@ -115,7 +115,11 @@ Page({
             url: '/pages/personalCenter/sportsData?type=' + type,
         })
     },
-
+    enter_addDietRecord: function () {
+        wx.navigateTo({
+            url: '/pages/addDietRecord/index?type=2',
+        })
+    },
 
     // 退出当前账号
     exit: function () {

@@ -1,0 +1,109 @@
+<view class="page">
+  <view class="page flex-col">
+    <view class="bd1 flex-col">
+      <!-- <view class="block3 flex-row">
+        <text class="word2">{{meal_type}}餐时间</text>
+        <view class="layer1 flex-col" bindtap="start_time_show">
+          <picker mode="time" value="{{hoursminute}}" start="00:00" end="24:00" bindchange="bindTimeChange" >
+            <view >
+              当前选择: {{hoursminute}}
+            </view>
+          </picker>
+        </view>
+      </view> -->
+      <view class="header">
+        <view class="bindDate" bindtap="changeTimeBefore">
+            <image src="/images/icons/triangle_left.png" mode="widthFix"></image>
+        </view>
+        <view class="date">
+            <text>{{yearmouthday}}</text>
+        </view>
+        <view class="bindDate" bindtap="changeTimeNext">
+            <image src="/images/icons/triangle_right.png" mode="widthFix"></image>
+        </view>
+      </view>
+
+      <view class="block4 flex-col"></view>
+      <view style="display:flex;">
+        <text class="txt1">食物清单</text>
+        <view wx:if="{{img_arr.length!=0&&img_arr.length<9}}" class="block9 flex-col">
+          <view bindtap="upimg" class="wrap1 flex-row">
+            <image class="label3" referrerpolicy="no-referrer" src="/images/icons/camera.png" />
+            <text class="word4">拍照记录</text>
+          </view>
+        </view>
+      </view>
+      <view wx:if="{{img_arr.length==0}}" class="block5 flex-col">
+        <view bindtap="upimg" class="wrap1 flex-row">
+          <image class="label3" referrerpolicy="no-referrer" src="/images/icons/camera.png" />
+          <text class="word4">拍照记录</text>
+        </view>
+      </view>
+      <view class="P5 app_flex" style="height: auto;">
+        <block>
+          <view class="img_box">
+            <block wx:if="{{img_arr.length!=0}}">
+              <view class="img_item" wx:for="{{img_arr}}" wx:for-item="item">
+                <image bindtap="previewImg" data-src="{{item}}" class="img_item_i" data-index='{{index}}' src="{{item}}" mode="aspectFill"></image>
+                <block>
+                  <image bindtap="delImg" data-index="{{index}}" src="/images/icons/deleteTest.png" class="closeImv"></image>
+                </block>
+              </view>
+            </block>
+          </view>
+        </block>
+      </view>
+      <!-- <text class="word5">如果忘记拍照可以文字记录哦～</text>
+      <view wx:for="{{info.details}}" wx:key="key" class="block6 flex-row">
+        <view class="group1 flex-col" style="width:240rpx;">
+          <input class="word6" style="width:200rpx !important;" placeholder="请填写食物名称" id="food-{{index}}" bindinput="setFood" value="{{item.meal_content}}"></input>
+        </view>
+        <view class="group2 flex-col" style="width:210rpx;">
+          <input class="txt2" style="width:170rpx !important;" type="number" placeholder="请填写摄入量" id="amount-{{index}}" bindinput="setAmount" value="{{item.intake_amount}}"></input>
+        </view>
+        <view class="group2 flex-col" catch:tap="bindCampany" data-id="company-{{index}}" style="width:150rpx;flex-direction: row;justify-content: space-between;display: flex;align-items: center;padding: 0rpx 10rpx 0rpx 16rpx;">
+          <picker bindchange="bindSelectrRemark" range="{{remarkList}}" style="width:100%;">
+            <view style="display: flex;align-items: center;width:100%;justify-content: space-between;">
+              <input class="txt2" disabled="{{true}}" style="width:80rpx !important;" id="company-{{index}}" placeholder="单位" bindinput="setCompany" value="{{item.intake_company}}"></input>
+              <image class="wrap2 flex-col" style="margin-top:0rpx;" src="/images/icons/right.png"></image>
+            </view>
+          </picker> 
+        </view>
+        <view class="group2 flex-col" style="background: #FFFFFF;padding-left: 0rpx;width:50rpx;flex-direction: row;justify-content: center;display: flex;align-items: center;" bindtap="delFood" data-index="{{index}}" >
+           <image src="/images/icons/deleteTest.png" class="closeView"></image>
+        </view>
+      </view>
+      <view class="block7 flex-col" bindtap="addFood">
+        <view class="mod1 flex-row">
+          <image class="wrap2 flex-col" src="/images/icons/add.png"></image>
+          <text class="info1">添加食物</text>
+        </view>
+      </view> -->
+
+      <view class="checked_view">
+        <view>请选择学生</view>
+        <!-- 一键全选 -->
+        <label class="checked_group1">
+          <checkbox-group bindchange="selectAll" class="checked_group">
+            <checkbox value="all" checked="{{checkedAll}}"></checkbox>
+            <text>全选</text>
+          </checkbox-group> 
+        </label>
+      </view>
+      <view wx:for="{{dataList}}" wx:key="key" class="block6 flex-row" style="margin: 0rpx 0 0 40rpx;display: flex;align-items: center;">
+        <label style="width:100%;" class="checked_group1">
+            <checkbox-group bindchange="checkboxChange" data-id="{{item.id}}">
+              <checkbox value="{{item.id}}" style="float:left;" checked='{{item.checked}}'></checkbox>
+            </checkbox-group> 
+            <text style="float:left">{{item.name}}</text>
+        </label>
+      </view>
+      <view class="block8 flex-col">
+        <button class="bd2 flex-col" bindtap="submit"><text class="word7">保存</text></button>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 弹框 -->
+<dialog-cus showDialog='{{showDialog}}' datas="{{dialogData}}" catch:dialogCancel="dialogCancel" catch:dialogSure="dialogSure"/>

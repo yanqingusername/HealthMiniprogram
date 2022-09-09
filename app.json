@@ -6,7 +6,15 @@
     "pages/personal/index",
     
     "pages/index/index",
-    "pages/baseInfo/index"
+    "pages/baseInfo/index",
+    "pages/sportCenter/index",
+    "pages/myHealthReport/index",
+    "pages/expertSuggest/index",
+    "pages/healthInspectResults/index",
+    "pages/bullRateRange/index",
+    "pages/addDietRecord/index",
+    "pages/heartRateLineChart/index"
+    
   ],
   "window":{
     "backgroundTextStyle":"light",

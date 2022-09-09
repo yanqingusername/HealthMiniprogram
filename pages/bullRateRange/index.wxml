@@ -1,0 +1,37 @@
+<view class="page flex-col">
+  <view >
+    <view class="data_view" wx:if="{{workOutinfoList.length > 0}}">
+      <block wx:for="{{workOutinfoList}}" wx:for-item="s" wx:key="index">
+        <view class="layer1 flex-col">
+          <view class="data_title">{{s.time}}</view>
+          <view class="data_items">
+            <view class="data_items_title">靶心率范围</view>
+            <view class="data_items_value">{{'110-130 次/分钟'}}</view>
+          </view>
+          <view class="data_items">
+            <view class="data_items_title">目标靶心率</view>
+            <view class="data_items_value">{{'80 次/分钟'}}</view>
+          </view>
+          <view class="data_items">
+            <view class="data_items_title">时间段</view>
+            <view class="data_items_value">7：00~17：00</view>
+          </view>
+          <view class="data_items">
+            <view class="data_items_title">靶心率达标次数</view>
+            <view class="data_items_value">{{'32'}}次</view>
+          </view>
+          <view class="data_items" style="border-bottom: none;">
+            <view class="data_items_title">靶心率超过次数</view>
+            <view class="data_items_value">{{'2'}}次</view>
+          </view>
+        </view>
+      </block>
+    </view>
+    <view wx:else style="display: flex;justify-content: center;align-items: center;padding: 50rpx;">
+        <view>暂无数据</view>
+    </view>
+    <view style="height: 30rpx;"></view>
+  </view>
+ 
+ 
+</view>

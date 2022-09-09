@@ -703,4 +703,40 @@ Page({
             box.showToast("请填写不通过原因");
         }
 	},
+    enter_sports: function (e) {
+        let type = e.currentTarget.dataset.type;
+        let hwid = e.currentTarget.dataset.hwid;
+        if(hwid){
+            wx.navigateTo({
+                url: `/pages/sportCenter/index?type=${type}&hwid=${hwid}`,
+            })
+        }
+    },
+    enter_healthReport: function (e) {
+        let id = e.currentTarget.dataset.id;
+        let name = e.currentTarget.dataset.name;
+        if(id){
+            wx.navigateTo({
+                url: `/pages/myHealthReport/index?sid=${id}&name=${name}`,
+            })
+        }
+    },
+    bindBullRateRange: function (e) {
+        let id = e.currentTarget.dataset.id;
+        let name = e.currentTarget.dataset.name;
+        if(id){
+            wx.navigateTo({
+                url: `/pages/bullRateRange/index?hwid=${id}&name=${name}&type=1`,
+            })
+        }
+    },
+    bindHeartRateLineChart: function (e) {
+        let id = e.currentTarget.dataset.id;
+        let name = e.currentTarget.dataset.name;
+        if(id){
+            wx.navigateTo({
+                url: `/pages/heartRateLineChart/index?hwid=${id}&name=${name}&type=1`,
+            })
+        }
+    },
 })

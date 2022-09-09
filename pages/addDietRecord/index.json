@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "上传午餐图片",
+  "usingComponents": {
+    "timePicker": "../../timePicker/timePicker",
+    "dialog-cus": "../../Components/dialog-cus/index"
+  },
+  "disableScroll":false
+  
+}

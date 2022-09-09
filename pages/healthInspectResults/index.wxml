@@ -1,0 +1,276 @@
+<view class="page flex-col">
+
+<view class="data_view" wx:if="{{csstype==2 && method=='getphysiqueinfo'}}">
+  <view class="layer1 flex-col" style="padding: 0rpx;">
+          <view class="data_items_new" style="border-bottom: none;padding: 20rpx 10rpx 20rpx 30rpx;" bind:tap="bindImg" data-type="1">
+            <view class="data_items_title_new" style="font-size: 36rpx;">标准值参考范围</view>
+            <image class="data_items_img_new" src="/images/icons/right.png" mode="aspectFill"></image>
+          </view>
+      </view>
+</view>
+
+  <view wx:if="{{csstype==1}}">
+    <view class="data_view" wx:if="{{dataList.length > 0}}">
+      <block wx:for="{{dataList}}" wx:for-item="s" wx:key="key">
+        <view class="layer1 flex-col">
+          <view class="data_title">{{s.time}}</view>
+          <block wx:for="{{s.info}}" wx:for-item="item" wx:key="index">
+             <view class="data_items_title" style="margin-top:10rpx;">{{item.textname}}</view>
+          </block>
+        </view>
+      </block>
+    </view>
+    <view wx:else style="display: flex;justify-content: center;align-items: center;padding: 50rpx;">
+        <view>暂无数据</view>
+    </view>
+    <view style="height: 30rpx;"></view>
+  </view>
+
+  <view wx:if="{{csstype==2 && method!='getphysiqueinfo'}}">
+    <view class="data_view" wx:if="{{dataList.length > 0}}">
+      <block wx:for="{{dataList}}" wx:for-item="s" wx:key="key">
+        <view class="layer1 flex-col">
+          <view class="data_title">{{s.time}}</view>
+          <block wx:for="{{s.info}}" wx:for-item="item" wx:key="index">
+            <view class="data_item_view">
+              <view class="data_items">
+                <view class="data_items_title">{{item.project_name}}</view>
+                <view class="data_items_title" style="color: {{(item.resultTips =='↑') ? '#F03A3A':'#333333'}}">{{item.result}}</view>
+              </view>
+              <view class="data_items" style="margin-top: 10rpx;">
+                <view class="data_items_value">单位：{{item.unit || "-"}}</view>
+                <view class="data_items_value">参考范围：{{item.reference || '-'}}</view>
+              </view>
+            </view>
+          </block>
+
+          <!-- <view class="data_title">2021-10-19</view>
+          <view class="data_item_view">
+            <view class="data_items">
+              <view class="data_items_title"></view>
+              <view class="data_items_title">5.05</view>
+            </view>
+            <view class="data_items" style="margin-top: 10rpx;">
+              <view class="data_items_value">单位：*10^9/L</view>
+              <view class="data_items_value">参考范围：4.5-10</view>
+            </view>
+          </view>
+          <view class="data_item_view">
+            <view class="data_items">
+              <view class="data_items_title">★红细胞</view>
+              <view class="data_items_title">4.58</view>
+            </view>
+            <view class="data_items" style="margin-top: 10rpx;">
+              <view class="data_items_value">单位：*10^2/L</view>
+              <view class="data_items_value">参考范围：3.50-5.50</view>
+            </view>
+          </view>
+          <view class="data_item_view">
+            <view class="data_items">
+              <view class="data_items_title">★血红蛋白</view>
+              <view class="data_items_title">129</view>
+            </view>
+            <view class="data_items" style="margin-top: 10rpx;">
+              <view class="data_items_value">单位：g/L</view>
+              <view class="data_items_value">参考范围：120-140</view>
+            </view>
+          </view>
+          <view class="data_item_view">
+            <view class="data_items">
+              <view class="data_items_title">★红细胞压积</view>
+              <view class="data_items_title">5.05</view>
+            </view>
+            <view class="data_items" style="margin-top: 10rpx;">
+              <view class="data_items_value">单位：*10^9/L</view>
+              <view class="data_items_value">单位：*10^9/L</view>
+            </view>
+          </view>
+          <view class="data_item_view">
+            <view class="data_items">
+              <view class="data_items_title">*平均红细胞体积</view>
+              <view class="data_items_title">5.05</view>
+            </view>
+            <view class="data_items" style="margin-top: 10rpx;">
+              <view class="data_items_value">单位：fL</view>
+              <view class="data_items_value">参考范围：82-100</view>
+            </view>
+          </view>
+          <view class="data_item_view">
+            <view class="data_items">
+              <view class="data_items_title">★白细胞</view>
+              <view class="data_items_title">5.05</view>
+            </view>
+            <view class="data_items" style="margin-top: 10rpx;">
+              <view class="data_items_value">单位：*10^9/L</view>
+              <view class="data_items_value">单位：*10^9/L</view>
+            </view>
+          </view>
+          <view class="data_item_view">
+            <view class="data_items">
+              <view class="data_items_title">★血小板</view>
+              <view class="data_items_title">5.05</view>
+            </view>
+            <view class="data_items" style="margin-top: 10rpx;">
+              <view class="data_items_value">单位：*10^9/L</view>
+              <view class="data_items_value">单位：*10^9/L</view>
+            </view>
+          </view>
+          <view class="data_item_view">
+            <view class="data_items">
+              <view class="data_items_title">红细胞分布宽度CV</view>
+              <view class="data_items_title">12.7</view>
+            </view>
+            <view class="data_items" style="margin-top: 10rpx;">
+              <view class="data_items_value">单位：%</view>
+              <view class="data_items_value">参考范围：11-15</view>
+            </view>
+          </view>
+          <view class="data_item_view">
+            <view class="data_items">
+              <view class="data_items_title">★白细胞</view>
+              <view class="data_items_title">5.05</view>
+            </view>
+            <view class="data_items" style="margin-top: 10rpx;">
+              <view class="data_items_value">单位：*10^9/L</view>
+              <view class="data_items_value">单位：*10^9/L</view>
+            </view>
+          </view>
+          <view class="data_item_view">
+            <view class="data_items">
+              <view class="data_items_title">★白细胞</view>
+              <view class="data_items_title">5.05</view>
+            </view>
+            <view class="data_items" style="margin-top: 10rpx;">
+              <view class="data_items_value">单位：*10^9/L</view>
+              <view class="data_items_value">单位：*10^9/L</view>
+            </view>
+          </view> -->
+
+        </view>
+      </block>
+    </view>
+    <view wx:else style="display: flex;justify-content: center;align-items: center;padding: 50rpx;">
+        <view>暂无数据</view>
+    </view>
+    <view style="height: 30rpx;"></view>
+  </view>
+
+  <view wx:if="{{csstype==3}}">
+    <view class="data_view" wx:if="{{dataList.length > 0}}">
+      <block wx:for="{{dataList}}" wx:for-item="s" wx:key="key">
+        <view class="layer1 flex-col">
+          <view class="data_title">{{s.time}}</view>
+          <block wx:for="{{s.BMD}}" wx:for-item="item" wx:key="index">
+            <view class="data_item_view">
+              <view class="data_items">
+                <view class="data_items_title" wx:if="{{item.sign_name == 'bmd_t'}}">T值</view>
+                <view class="data_items_title" wx:if="{{item.sign_name == 'bmd_z'}}">Z值</view>
+                <view class="data_items_title" wx:if="{{item.sign_name == 'bmd_Oi'}}">Oi值</view>
+                <view class="data_items_title">{{item.sign_value}}</view>
+              </view>
+              <view class="data_items" style="margin-top: 10rpx;">
+                <view class="data_items_value">单位：{{item.sign_unit || "-"}}</view>
+                <view class="data_items_value">参考范围：{{item.reference || '-'}}</view>
+              </view>
+            </view>
+          </block>
+        </view>
+      </block>
+    </view>
+    <view wx:else style="display: flex;justify-content: center;align-items: center;padding: 50rpx;">
+        <view>暂无数据</view>
+    </view>
+    <view style="height: 30rpx;"></view>
+  </view>
+  
+  <view wx:if="{{csstype==4}}">
+    <view class="data_view" wx:if="{{dataList.length > 0}}">
+      <block wx:for="{{dataList}}" wx:for-item="s" wx:key="key">
+        <view class="layer1 flex-col">
+          <view class="data_title">{{s.time}}</view>
+          <block wx:for="{{s.info}}" wx:for-item="item" wx:key="index">
+            <!-- <view class="data_item_view" bind:tap="bindClick" data-url="{{item.urlpdf}}">
+              <image src="{{item.urlimg}}" mode="aspectFit" />
+            </view> -->
+            <view class="data_items_new" bind:tap="bindClick" data-url="{{item.urlpdf}}">
+              <view class="data_items_title_new" style="font-size: 32rpx;">查看报告</view>
+              <image class="data_items_img_new" src="/images/icons/right.png" mode="aspectFill"></image>
+            </view>
+          </block>
+        </view>
+      </block>
+    </view>
+    <view wx:else style="display: flex;justify-content: center;align-items: center;padding: 50rpx;">
+        <view>暂无数据</view>
+    </view>
+    <view style="height: 30rpx;"></view>
+  </view>
+  
+  <view wx:if="{{csstype==2 && method=='getphysiqueinfo'}}">
+    <view class="data_view" wx:if="{{dataList.length > 0}}">
+      <block wx:for="{{dataList}}" wx:for-item="s" wx:key="index">
+        <view class="layer1 flex-col">
+          <view class="data_title">{{s.time}}</view>
+          <block wx:for="{{s.info}}" wx:for-item="item" wx:key="index">
+            <view class="data_item_view">
+              <view class="data_items">
+                <view class="data_items_title" wx:if="{{item.sign_name == 'height'}}">身高</view>
+                <view class="data_items_title" wx:if="{{item.sign_name == 'Weight'}}">体重</view>
+                <view class="data_items_title" wx:if="{{item.sign_name == 'bmi'}}">身体质量指数</view>
+                <view class="data_items_title" wx:if="{{item.sign_name == 'systolic'}}">收缩压</view>
+                <view class="data_items_title" wx:if="{{item.sign_name == 'diastolic'}}">舒张压</view>
+                <view class="data_items_title">{{item.sign_value}}</view>
+              </view>
+              <view class="data_items" style="margin-top: 10rpx;">
+                <view class="data_items_value">单位：{{item.sign_unit || "-"}}</view>
+                <view class="data_items_value">参考范围：{{item.reference || '-'}}</view>
+              </view>
+            </view>
+          </block>
+         
+          <!-- <view class="data_item_view">
+            <view class="data_items">
+              <view class="data_items_title">体重</view>
+              <view class="data_items_title" style="color: {{index == 1 ? '#F03A3A':'#333333'}}">51.9</view>
+            </view>
+            <view class="data_items" style="margin-top: 10rpx;">
+              <view class="data_items_value">单位：kg</view>
+              <view class="data_items_value">参考范围：40.2-45.3</view>
+            </view>
+          </view>
+          <view class="data_item_view">
+            <view class="data_items">
+              <view class="data_items_title">收缩压</view>
+              <view class="data_items_title">116</view>
+            </view>
+            <view class="data_items" style="margin-top: 10rpx;">
+              <view class="data_items_value">单位：mmHg</view>
+              <view class="data_items_value">参考范围：100-120</view>
+            </view>
+          </view>
+          <view class="data_item_view">
+            <view class="data_items">
+              <view class="data_items_title">舒张压</view>
+              <view class="data_items_title">67</view>
+            </view>
+            <view class="data_items" style="margin-top: 10rpx;">
+              <view class="data_items_value">单位：mmHg</view>
+              <view class="data_items_value">参考范围：60-80</view>
+            </view>
+          </view> -->
+        </view>
+      </block>
+    </view>
+   <view wx:else style="display: flex;justify-content: center;align-items: center;padding: 50rpx;">
+        <view>暂无数据</view>
+    </view>
+    <view style="height: 30rpx;"></view>
+
+    <!-- <view style="height: 160rpx;"></view> -->
+    <!-- <view class="view_button">
+      <view class="view_button_item">生长曲线</view>
+    </view> -->
+  </view>
+ 
+ 
+</view>
