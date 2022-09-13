@@ -13,7 +13,13 @@ Page({
         imageWidth:0,
         timestamp:new Date().getTime(),
         yearmouthday:"",
-        numberData: '80'
+        numberData: '80',
+        time_slot: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24'], // 时间段
+        hear_trate: [1, 6, 9, 1, 0, 2, 9, 2, 8, 6, 0, 9, 8, 0, 3, 7, 3, 9, 3, 8, 9, 5, 4, 1],
+        max_hear_trate: 20, // 心率最大值
+	    min_hear_trate: -5, // 心率最小值
+	    heart_rate_range: "50-148", // 心率范围
+	    resting_heart_rate: "64", // 静息心率
     },
     onLoad: function (options) {
         this.currentTime();
@@ -30,10 +36,11 @@ Page({
             wx.setNavigationBarTitle({
                 title:"心率折线图"
             })
-            this.getWorkOutinfo();
+            // this.getHeartRateLineChart();
         }
     },
     onShow: function () {
+        let that = this;
         var windowWidth = 320;
         try {
          var res = wx.getSystemInfoSync();
@@ -44,11 +51,11 @@ Page({
         yuelineChart = new wxCharts({
          canvasId: 'yueEle',
          type: 'line',
-         categories: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'], //categories X轴
+         categories: that.data.time_slot, //categories X轴
          animation: true,
          series: [{
           name: 'A',
-          data: [1, 6, 9, 1, 0, 2, 9, 2, 8, 6, 0, 9, 8, 0, 3, 7, 3, 9, 3, 8, 9, 5, 4, 1, 5, 8, 2, 4, 9, 8, 7],
+          data: that.data.hear_trate,
           format: function (val, name) {
            return val + '';
           }
@@ -69,8 +76,8 @@ Page({
           format: function (val) {
            return val;
           },
-          max: 20,
-          min: -5
+          max: that.data.max_hear_trate,
+          min: that.data.min_hear_trate
          },
          width: windowWidth,
          height: 200,
@@ -93,19 +100,24 @@ Page({
             }
         });
     },
-    getWorkOutinfo(){
+    getHeartRateLineChart(){
         let that = this;
         let data = {
             hw_id: this.data.hwid
         }
-        request.request_get('/hmapi/getWorkOutinfo.hn', data, function (res) {
+        request.request_get('/hmapi/getHeartRateLineChart.hn', data, function (res) {
             if (res) {
                 if (!res.success) {
                     box.showToast(res.msg);
                     return;
                 }
                 that.setData({
-                    workOutinfoList: res.msg
+                    time_slot: res.msg.time_slot,
+                    hear_trate: res.msg.hear_trate,
+                    max_hear_trate: res.msg.max_hear_trate,
+                    min_hear_trate: res.msg.min_hear_trate,
+                    heart_rate_range: res.msg.heart_rate_range,
+                    resting_heart_rate: res.msg.resting_heart_rate
                 });
             }
         })

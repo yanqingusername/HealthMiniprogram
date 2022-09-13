@@ -99,7 +99,7 @@
         </label>
       </view>
       <view class="block8 flex-col">
-        <button class="bd2 flex-col" bindtap="submit"><text class="word7">保存</text></button>
+        <button class="bd2 flex-col" bindtap="bindSubmit"><text class="word7">保存</text></button>
       </view>
     </view>
   </view>

@@ -13,7 +13,8 @@
     "pages/healthInspectResults/index",
     "pages/bullRateRange/index",
     "pages/addDietRecord/index",
-    "pages/heartRateLineChart/index"
+    "pages/heartRateLineChart/index",
+    "pages/healthImg/index"
     
   ],
   "window":{

@@ -108,6 +108,9 @@ Page({
      console.log(options)
 
      this.currentTime();
+
+     // 获取学生
+    //  this.getStudentList();
       
         let that = this;
         that.getOrderNum();
@@ -278,7 +281,7 @@ Page({
                   success: function (res) {
                     if (res.confirm) {
                         wx.reLaunch({
-                            url: '/pages/index/index',
+                            url: '/pages/frontpage/index',
                           })
                     }
                   }
@@ -502,6 +505,28 @@ Page({
       }
     }
 	},
+  /**
+   * 获取学生列表
+   */
+   getStudentList(){
+    let that = this;
+    let data = {
+      id: app.globalData.userInfo.id, // 创建人id
+      // meal_person: app.globalData.userInfo.name,
+      // school: app.globalData.userInfo.school
+    }
+    request.request_get('/hmapi/getStudentList.hn', data, function (res) {
+        if (res) {
+            if (!res.success) {
+                box.showToast(res.msg);
+                return;
+            }
+            that.setData({
+              dataList: res.msg
+            });
+        }
+    })
+  },
     /**
      * 当前日期
      */
@@ -599,5 +624,70 @@ Page({
           });
         }
         console.log(this.data.checkedIds);
+      },
+      // 提交预约信息
+    bindSubmit: utils.throttle(function (e) {
+      let that = this;
+      wx.showLoading({
+        title: '提交中...',
+        mask:true,
+        duration:3000
+      })
+
+      let img_arr = that.data.img_arr;
+      let checkedIds = that.data.checkedIds
+      if(img_arr.length == 0){
+        box.showToast("请拍照记录");
+        return;
+      } else if(checkedIds.length == 0){
+        box.showToast("请选择学生");
+        return;
       }
+    
+    
+      let meal_type_id= that.data.meal_type_id;
+      let meal_time = that.data.yearmouthday+" "+that.data.hoursminute;
+      let meal_person_id = app.globalData.userInfo.id; // 创建人id
+    
+    
+      let params = {
+        date: meal_time, // 进餐时间
+        id: meal_person_id, //进餐人id
+        img_arr: img_arr,
+        checkedIds: checkedIds,
+        meal_type_id: meal_type_id, // 1 早餐  2 午餐  3 晚餐  4 加餐 
+      }
+       console.info("请求数据",params)
+      
+          request.request_get('/hmapi/getSubmitPic.hn', params, function (res) {
+            console.info('回调', res)
+            if (res) {
+              if (res.success) {  
+                wx.showModal({
+                  title: '成功',
+                  content: '提交成功',
+                  showCancel: false,
+                  confirmText: '确定',
+                  success: function (res) {
+                    if (res.confirm) {
+                        wx.reLaunch({
+                          url: '/pages/frontpage/index',
+                        })
+                    }
+                  }
+                })
+              } else {
+                console.log(res.msg);
+                box.showToast("创建失败，请检查网络连接！");
+              }
+            }else{
+              box.showToast("网络不稳定，请重试");
+            }
+          })
+      
+      wx.hideLoading({
+        success: (res) => {},
+      })
+    
+  },3000),
 })

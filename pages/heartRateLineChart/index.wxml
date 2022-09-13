@@ -28,7 +28,7 @@
   <view class="view_1">
     <view class="view_1_1">心率范围</view>
     <view class="view_1_2">
-      <view style="font-size: 36rpx;">{{'50-148'}}</view>
+      <view style="font-size: 36rpx;">{{heart_rate_range}}</view>
       <view style="font-size: 20rpx;margin-left:4rpx;">次/每分钟</view>
     </view>
   </view>
@@ -36,7 +36,7 @@
   <view class="view_1" style="background: #F5F5F5;margin-left: 30rpx;">
     <view class="view_1_1" style="color:#999999;">静息心率</view>
     <view class="view_1_2" style="color:#333333;">
-      <view style="font-size: 36rpx;">{{'64'}}</view>
+      <view style="font-size: 36rpx;">{{resting_heart_rate}}</view>
       <view style="font-size: 20rpx;margin-left:4rpx;">次/每分钟</view>
     </view>
   </view>
