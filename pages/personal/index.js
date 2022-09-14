@@ -6,6 +6,7 @@ Page({
     data: {
         name: '',
         school: '',
+        school_id: '',
         avatarUrl: '',
         cur_height_weight: {
             height: '-',
@@ -89,7 +90,8 @@ Page({
         //这里面需要每次去app.js中获取用户基本信息，然后展示
         that.setData({
             name: app.globalData.userInfo.name,
-            school: app.globalData.userInfo.school
+            school: app.globalData.userInfo.school,
+            school_id: app.globalData.userInfo.school_id,
         })
     },
 

@@ -1,35 +1,48 @@
 <view class="page flex-col">
   <view >
-    <view class="data_view" wx:if="{{workOutinfoList.length > 0}}">
-      <block wx:for="{{workOutinfoList}}" wx:for-item="s" wx:key="index">
+    <view class="header">
+        <view class="bindDate" bindtap="changeTimeBefore">
+            <image src="/images/icons/triangle_left.png" mode="widthFix"></image>
+        </view>
+        <view class="date">
+            <text>{{yearmouthday}}</text>
+        </view>
+        <view class="bindDate" bindtap="changeTimeNext">
+            <image src="/images/icons/triangle_right.png" mode="widthFix"></image>
+        </view>
+      </view>
+
+    <!-- <view class="data_view" wx:if="{{workOutinfoList.length > 0}}"> -->
+      <!-- <block wx:for="{{workOutinfoList}}" wx:for-item="s" wx:key="index"> -->
+    <view class="data_view" >
         <view class="layer1 flex-col">
-          <view class="data_title">{{s.time}}</view>
+          <view class="data_title">{{time}}</view>
           <view class="data_items">
             <view class="data_items_title">靶心率范围</view>
-            <view class="data_items_value">{{s.bullraterange}} 次/分钟</view>
+            <view class="data_items_value">{{bullraterange}} 次/分钟</view>
           </view>
-          <view class="data_items">
+          <!-- <view class="data_items">
             <view class="data_items_title">目标靶心率</view>
             <view class="data_items_value">{{s.targetheartrate}} 次/分钟</view>
-          </view>
+          </view> -->
           <view class="data_items">
             <view class="data_items_title">时间段</view>
-            <view class="data_items_value">{{s.timeslot}}</view>
+            <view class="data_items_value">{{timeslot}}</view>
           </view>
           <view class="data_items">
             <view class="data_items_title">靶心率达标次数</view>
-            <view class="data_items_value">{{s.normalnumber}}次</view>
+            <view class="data_items_value">{{normalnumber}}次</view>
           </view>
           <view class="data_items" style="border-bottom: none;">
             <view class="data_items_title">靶心率超过次数</view>
-            <view class="data_items_value">{{s.abnormalnumber}}次</view>
+            <view class="data_items_value">{{abnormalnumber}}次</view>
           </view>
         </view>
-      </block>
+      <!-- </block> -->
     </view>
-    <view wx:else style="display: flex;justify-content: center;align-items: center;padding: 50rpx;">
+    <!-- <view wx:else style="display: flex;justify-content: center;align-items: center;padding: 50rpx;">
         <view>暂无数据</view>
-    </view>
+    </view> -->
     <view style="height: 30rpx;"></view>
   </view>
  

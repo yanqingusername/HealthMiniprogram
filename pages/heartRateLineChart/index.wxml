@@ -12,7 +12,7 @@
         </view>
       </view>
       <view style="height: 20rpx;"></view>
-      <view class="title_view">
+      <view class="title_view" wx:if="{{numberData}}">
         <view style="font-size: 60rpx;">{{numberData}}</view>
         <view style="font-size: 20rpx;margin-left:10rpx;">次/每分钟</view>
       </view>
@@ -28,7 +28,7 @@
   <view class="view_1">
     <view class="view_1_1">心率范围</view>
     <view class="view_1_2">
-      <view style="font-size: 36rpx;">{{heart_rate_range}}</view>
+      <view style="font-size: 36rpx;">{{min_hear_trate}}-{{max_hear_trate}}</view>
       <view style="font-size: 20rpx;margin-left:4rpx;">次/每分钟</view>
     </view>
   </view>

@@ -23,6 +23,17 @@
         </view>
       </view>
 
+      <view class="block-flex-row">
+        <text class="block-flex-row-title">{{meal_type}}餐时间</text>
+        <view class="layer1 flex-col" bindtap="start_time_show">
+          <picker mode="time" value="{{hoursminute}}" start="00:00" end="24:00" bindchange="bindTimeChange" >
+            <view >
+              当前选择: {{hoursminute}}
+            </view>
+          </picker>
+        </view>
+      </view>
+
       <view class="block4 flex-col"></view>
       <view style="display:flex;">
         <text class="txt1">食物清单</text>
@@ -53,7 +64,7 @@
           </view>
         </block>
       </view>
-      <!-- <text class="word5">如果忘记拍照可以文字记录哦～</text>
+      <text class="word5">如果忘记拍照可以文字记录哦～</text>
       <view wx:for="{{info.details}}" wx:key="key" class="block6 flex-row">
         <view class="group1 flex-col" style="width:240rpx;">
           <input class="word6" style="width:200rpx !important;" placeholder="请填写食物名称" id="food-{{index}}" bindinput="setFood" value="{{item.meal_content}}"></input>
@@ -78,7 +89,7 @@
           <image class="wrap2 flex-col" src="/images/icons/add.png"></image>
           <text class="info1">添加食物</text>
         </view>
-      </view> -->
+      </view>
 
       <view class="checked_view">
         <view>请选择学生</view>
@@ -99,7 +110,7 @@
         </label>
       </view>
       <view class="block8 flex-col">
-        <button class="bd2 flex-col" bindtap="bindSubmit"><text class="word7">保存</text></button>
+        <button class="bd2 flex-col" bindtap="submit"><text class="word7">保存</text></button>
       </view>
     </view>
   </view>

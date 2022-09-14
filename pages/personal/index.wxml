@@ -12,7 +12,7 @@
     </view>
 </view>
 
-<view class="base_info" bindtap="enter_addDietRecord">
+<view class="base_info" bindtap="enter_addDietRecord" wx:if="{{school_id}}">
     <view class="base_info_content">
         <text class="" style="font-size: 26rpx;">上传午餐图片</text>
         <image class="base_info_img" src="/images/icons/right.png" mode="widthFix"></image>
@@ -21,6 +21,6 @@
 
 <!-- <view class="logout" bindtap="exit">退出登录</view> -->
 
-<view class="logout_view">
+<view class="logout_view" style="margin-top:{{school_id? '460':'600'}}rpx;">
     <view class="logout" bindtap="exit">退出登录</view>
 </view>

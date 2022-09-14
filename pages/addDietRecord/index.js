@@ -32,7 +32,15 @@ Page({
         startTime: time.format_hour3(new Date(new Date().getTime())).toString() + ":00",
         startChartHide: false,
         time_chosen:false,
-        
+        pickerConfig: {
+          endDate: false,
+          column: "minute",
+          dateLimit: true,
+          initStartTime: time.format_hour(new Date(new Date().getTime())),
+          limitStartTime: time.format_hour(new Date(new Date().getTime() - 1000 * 60 * 60 * 24 * 3)),
+          limitEndTime: time.format_hour(new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 7))
+        },
+        img_arr:[],
         info:{
             details:[{meal_content:'',intake_amount:'',intake_company:''}]
         },
@@ -53,7 +61,6 @@ Page({
         showDialog: false,
         closeIndex: -1,
 
-        img_arr:[],
         timestamp:new Date().getTime(),
         dataList:[
             {
@@ -110,7 +117,7 @@ Page({
      this.currentTime();
 
      // 获取学生
-    //  this.getStudentList();
+     this.getStudentList();
       
         let that = this;
         that.getOrderNum();
@@ -234,28 +241,27 @@ Page({
         intake_amount_final += foodList[i].intake_amount + ";";
         intake_company_final += foodList[i].intake_company + ";";
     }
+
+    let checkedIds = that.data.checkedIds;
     
     var meal_type_id= that.data.meal_type_id;
-    var record_num = that.data.record_num;
+    // var record_num = that.data.record_num;
     var meal_time = that.data.yearmouthday+" "+that.data.hoursminute;
     var meal_person_id = app.globalData.userInfo.id; // 创建人id
-    var meal_person = app.globalData.userInfo.name;
-    var school=app.globalData.userInfo.school
     
-      var data = {
-        meal_person_id:meal_person_id, //进餐人id
-        record_num: record_num,
-        meal_time: meal_time, // 进餐时间
+    var data = {
+        date: meal_time, // 进餐时间
+        id: app.globalData.userInfo.school_id,  //对应学校id,
+        mangeid: meal_person_id,//上传人的id
+        checkedIds: checkedIds,
         meal_type_id: meal_type_id, // 1 早餐  2 午餐  3 晚餐  4 加餐 
-        meal_person: meal_person,//进餐人姓名
-        imgArr:img_arr,
-        meal_content_final : meal_content_final,
-        intake_amount_final : intake_amount_final,
+        img_arr: img_arr,
+        meal_content: meal_content_final,
+        intake_amount: intake_amount_final,
         intake_company_final: intake_company_final,
-        school:school
-      }
+    }
        console.info("请求数据",data)
-      if((data.meal_content_final==""&&data.intake_amount_final=="")&&data.imgArr.length==0){
+      if((data.meal_content_final==""&&data.intake_amount_final=="")&&data.img_arr.length==0){
         box.showToast("请拍照记录或文字记录");
          let info = that.data.info;
           info.details.push(new Detail('','',''));
@@ -263,16 +269,17 @@ Page({
             info: info
           });
         return
-      }
-      else{
+      }else if(checkedIds.length == 0){
+        box.showToast("请选择学生");
+        return;
+      }else{
         // console.info("请求数据---->:",data)
         // return
         // box.showToast("ok");
-          request.request_get('/api/addFoodInfo.hn', data, function (res) {
+          request.request_get('/manage/getSubmitPic.hn', data, function (res) {
             console.info('回调', res)
             if (res) {
               if (res.success) {  
-                var id = res.msg
                 wx.showModal({
                   title: '成功',
                   content: '提交成功',
@@ -511,11 +518,11 @@ Page({
    getStudentList(){
     let that = this;
     let data = {
-      id: app.globalData.userInfo.id, // 创建人id
+      id: app.globalData.userInfo.school_id, // 创建人id
       // meal_person: app.globalData.userInfo.name,
       // school: app.globalData.userInfo.school
     }
-    request.request_get('/hmapi/getStudentList.hn', data, function (res) {
+    request.request_get('/manage/getStudentList.hn', data, function (res) {
         if (res) {
             if (!res.success) {
                 box.showToast(res.msg);
@@ -625,69 +632,4 @@ Page({
         }
         console.log(this.data.checkedIds);
       },
-      // 提交预约信息
-    bindSubmit: utils.throttle(function (e) {
-      let that = this;
-      wx.showLoading({
-        title: '提交中...',
-        mask:true,
-        duration:3000
-      })
-
-      let img_arr = that.data.img_arr;
-      let checkedIds = that.data.checkedIds
-      if(img_arr.length == 0){
-        box.showToast("请拍照记录");
-        return;
-      } else if(checkedIds.length == 0){
-        box.showToast("请选择学生");
-        return;
-      }
-    
-    
-      let meal_type_id= that.data.meal_type_id;
-      let meal_time = that.data.yearmouthday+" "+that.data.hoursminute;
-      let meal_person_id = app.globalData.userInfo.id; // 创建人id
-    
-    
-      let params = {
-        date: meal_time, // 进餐时间
-        id: meal_person_id, //进餐人id
-        img_arr: img_arr,
-        checkedIds: checkedIds,
-        meal_type_id: meal_type_id, // 1 早餐  2 午餐  3 晚餐  4 加餐 
-      }
-       console.info("请求数据",params)
-      
-          request.request_get('/hmapi/getSubmitPic.hn', params, function (res) {
-            console.info('回调', res)
-            if (res) {
-              if (res.success) {  
-                wx.showModal({
-                  title: '成功',
-                  content: '提交成功',
-                  showCancel: false,
-                  confirmText: '确定',
-                  success: function (res) {
-                    if (res.confirm) {
-                        wx.reLaunch({
-                          url: '/pages/frontpage/index',
-                        })
-                    }
-                  }
-                })
-              } else {
-                console.log(res.msg);
-                box.showToast("创建失败，请检查网络连接！");
-              }
-            }else{
-              box.showToast("网络不稳定，请重试");
-            }
-          })
-      
-      wx.hideLoading({
-        success: (res) => {},
-      })
-    
-  },3000),
 })
