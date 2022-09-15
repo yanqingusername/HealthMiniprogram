@@ -94,7 +94,7 @@ Page({
         
     },
     bindTimeChange:function(e){
-      var temptime=e.detail.value
+      let temptime=e.detail.value
       console.info("时间选择为",temptime)
       this.setData({
         hoursminute:temptime
@@ -197,35 +197,35 @@ Page({
       let that = this;
     console.log(this.data.info)
     console.log(this.data.info.details)
-    var foodList = this.data.info.details
+    let foodList = this.data.info.details
     wx.showLoading({
         title: '提交中...',
         mask:true,
         duration:3000
       })
-      var time_chosen = that.data.hoursminute;
-      var img_arr = that.data.img_arr;
+      let time_chosen = that.data.hoursminute;
+      let img_arr = that.data.img_arr;
       if (time_chosen == "") {
         box.showToast("请选择用餐时间");
         return;
-       } else if(foodList.length == 0){
-        box.showToast("请填写文字记录");
-        return;
+      //  } else if(foodList.length == 0){
+      //   box.showToast("请填写文字记录");
+      //   return;
       }else if(img_arr.length == 0 && foodList.length == 1&&foodList[0].meal_content==""&&foodList[0].intake_amount==""&&foodList[0].intake_company==""){
           box.showToast("请拍照记录或文字记录");
           return;
       }
-    var meal_content_final = '';
-    var intake_amount_final = '';
-    var intake_company_final = '';
-    for(var i=0;i<foodList.length;i++){ //删除双空白项
+      let meal_content_final = '';
+      let intake_amount_final = '';
+      let intake_company_final = '';
+    for(let i=0;i<foodList.length;i++){ //删除双空白项
       if(foodList[i].meal_content == '' &&foodList[i].intake_amount == ''){
           foodList.splice(i,1);
           i--;
       }
   }
-    // var info_p = new Info();
-    for(var i in foodList){ //确保不出现只有食物名称没有摄入量或相反的情况
+    // let info_p = new Info();
+    for(let i in foodList){ //确保不出现只有食物名称没有摄入量或相反的情况
         if(foodList[i].meal_content == '' &&foodList[i].intake_amount != '' ||foodList[i].meal_content != '' &&foodList[i].intake_amount == ''){
             box.showToast("请将文字记录填写完整");
             return;
@@ -236,7 +236,7 @@ Page({
       }
     }
     
-    for (var i in foodList) {
+    for (let i in foodList) {
         meal_content_final += foodList[i].meal_content + ";";
         intake_amount_final += foodList[i].intake_amount + ";";
         intake_company_final += foodList[i].intake_company + ";";
@@ -244,14 +244,14 @@ Page({
 
     let checkedIds = that.data.checkedIds;
     
-    var meal_type_id= that.data.meal_type_id;
-    var record_num = that.data.record_num;
-    var meal_time = that.data.yearmouthday+" "+that.data.hoursminute;
-    var meal_person_id = app.globalData.userInfo.id; // 创建人id
+    let meal_type_id= that.data.meal_type_id;
+    let record_num = that.data.record_num;
+    let meal_time = that.data.yearmouthday+" "+that.data.hoursminute;
+    let meal_person_id = app.globalData.userInfo.id; // 创建人id
     
     let checkedIdsString = checkedIds.join(',');
 
-    var data = {
+    let data = {
         record_num: record_num,
         date: meal_time, // 进餐时间
         id: app.globalData.userInfo.school_id,  //对应学校id,
@@ -333,9 +333,9 @@ Page({
           });
       },
       getOrderNum: function () {
-        var that = this;
-        var random = Math.round(Math.random() * 9999);
-        var str1 = that.getFullTime() + random;
+        let that = this;
+        let random = Math.round(Math.random() * 9999);
+        let str1 = that.getFullTime() + random;
         that.setData({
             record_num: str1
         })
@@ -355,8 +355,8 @@ Page({
       },
     //上传图片
   upimg: function () {
-    var that = this;
-    var data = [];
+    let that = this;
+    let data = [];
     if (that.data.img_arr.length < 10) {
       wx.chooseImage({
         count:9-that.data.img_arr.length,
@@ -364,9 +364,9 @@ Page({
         success: function (res) {
           console.log(res.tempFilePaths)
           console.log(res.tempFilePaths.length)
-          var filePath = res.tempFilePaths;
+          let filePath = res.tempFilePaths;
           // debugger
-          for (var i = 0; i < filePath.length; i++) {
+          for (let i = 0; i < filePath.length; i++) {
             wx.uploadFile({
               //url: 'https://8.130.48.31:8080/HM/api/upload.hn',  // 测试服务器  孙仕豪
               // url: 'https://scldev.coyotebio-lab.com:8443/HM/api/upload.hn',  // 测试服务器  孙仕豪
@@ -386,11 +386,11 @@ Page({
               success: function (returnRes) {
                 // debugger
                 console.log(returnRes)
-                var data = JSON.parse(returnRes.data)
+                let data = JSON.parse(returnRes.data)
                 console.log(data.msg)
-                var imgList = [];
-                var imgArr = that.data.img_arr;
-                for (var i = 0; i < imgArr.length; i++) {
+                let imgList = [];
+                let imgArr = that.data.img_arr;
+                for (let i = 0; i < imgArr.length; i++) {
                   imgList.push(imgArr[i])
                 }
                 imgList.push(data.msg)
@@ -437,9 +437,9 @@ Page({
    // 预览图片
   previewImg: function (e) {
     //获取当前图片的下标
-    var index = e.currentTarget.dataset.index;
+    let index = e.currentTarget.dataset.index;
     //所有图片
-    var img_arr = this.data.img_arr;
+    let img_arr = this.data.img_arr;
     wx.previewImage({
       //当前显示图片
       current: img_arr[index],
@@ -449,7 +449,7 @@ Page({
   },
   bindSelectrRemark: function (e) {
     wx.hideKeyboard();
-    var that = this;
+    let that = this;
     console.log('---->:',this.data.campany_lable)
     let index = parseInt(this.data.campany_lable.replace("company-", ""));
     let intake_company = that.data.remarkList[e.detail.value];
