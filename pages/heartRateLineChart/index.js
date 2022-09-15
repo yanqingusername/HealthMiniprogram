@@ -208,7 +208,8 @@ Page({
 
         this.setData({
             timestamp: timestamp,
-            yearmouthday: date
+            yearmouthday: date,
+            numberData: ''
         });
 
         this.getHeartRateLineChart();
@@ -232,6 +233,7 @@ Page({
         this.setData({
             timestamp: timestamp,
             yearmouthday: date,
+            numberData: ''
         });
 
         this.getHeartRateLineChart();
