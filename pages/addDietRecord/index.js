@@ -245,15 +245,18 @@ Page({
     let checkedIds = that.data.checkedIds;
     
     var meal_type_id= that.data.meal_type_id;
-    // var record_num = that.data.record_num;
+    var record_num = that.data.record_num;
     var meal_time = that.data.yearmouthday+" "+that.data.hoursminute;
     var meal_person_id = app.globalData.userInfo.id; // 创建人id
     
+    let checkedIdsString = checkedIds.join(',');
+
     var data = {
+        record_num: record_num,
         date: meal_time, // 进餐时间
         id: app.globalData.userInfo.school_id,  //对应学校id,
         mangeid: meal_person_id,//上传人的id
-        checkedIds: checkedIds,
+        checkedIds: checkedIdsString,
         meal_type_id: meal_type_id, // 1 早餐  2 午餐  3 晚餐  4 加餐 
         imgArr: img_arr,
         meal_content: meal_content_final,
