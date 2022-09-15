@@ -297,8 +297,7 @@ Page({
                   }
                 })
               } else {
-                console.log(res.msg);
-                box.showToast("创建失败，请检查网络连接！");
+                box.showToast(res.msg);
               }
               // box.hideLoading();
             }else{
