@@ -259,12 +259,12 @@ Page({
         checkedIds: checkedIdsString,
         meal_type_id: meal_type_id, // 1 早餐  2 午餐  3 晚餐  4 加餐 
         imgArr: img_arr,
-        meal_content: meal_content_final,
-        intake_amount: intake_amount_final,
+        meal_content_final: meal_content_final,
+        intake_amount_final: intake_amount_final,
         intake_company_final: intake_company_final,
     }
        console.info("请求数据",data)
-      if((data.meal_content==""&&data.intake_amount=="")&&data.imgArr.length==0){
+      if((data.meal_content_final==""&&data.intake_amount_final=="")&&data.imgArr.length==0){
         box.showToast("请拍照记录或文字记录");
          let info = that.data.info;
           info.details.push(new Detail('','',''));
