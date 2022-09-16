@@ -63,7 +63,7 @@
                 </view>    
             </view>
             <view class="content_bottom">
-                <view data-id="{{item1.id}}" bindtap="remindMeal" data-type="0" class="remindActive">{{item1.meal_info.length === 0 ? '0' : item1.meal_info.length}}/3提醒</view>
+                <view data-id="{{item1.id}}" bindtap="remindMeal1" data-type="0" class="remindActive">{{item1.meal_info.length === 0 ? '0' : item1.meal_info.length}}/3提醒</view>
                 <!-- 默认都是 -->
                 <!-- 改动为输入框 -->
                 <!-- <picker class="" range="{{notPassReasons}}" range-key="title" value="{{index}}" data-index="{{index1}}" data-id="{{item1.id}}" bindchange="bindPickerChange"> -->
@@ -137,3 +137,8 @@
 
 <!-- 运动通过弹框 -->
 <dialog-cus id="passSportOrderId" showDialog='{{showPassSportDialog}}' datas="{{dialogPassData}}" catch:dialogCloseCancel="dialogPassSportCancel" catch:dialogCloseSure="dialogPassSportSure" types="1"/>
+
+
+<!-- 提醒弹框 -->
+<dialog-cus id="remindMealId" showDialog='{{showRemindMealDialog}}' datas="{{dialogRemindMealData}}" catch:dialogCloseCancel="dialogRemindMealCancel" catch:dialogCloseSure="dialogRemindMealSure" types="1"/>
+

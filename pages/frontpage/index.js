@@ -68,6 +68,17 @@ Page({
         pass_sport_num: '',
         passSportIndex: -1,
         pass_sport_hwid: '',
+
+        dialogRemindMealData: {
+			title: "温馨提醒",
+			titles: "有什么叮嘱同学的吗？（选填）",
+            ptitle: "有什么叮嘱同学的吗？（选填）",
+			cancel: "取消",
+			sure: "确认"
+		},
+		showRemindMealDialog: false,
+        remindMeal_order_num: '',
+        remindMealIndex: -1,
     },
     QueryParams: {
         // 默认第一组数据
@@ -285,6 +296,7 @@ Page({
             timestamp: this.data.date,
             sender_id: app.globalData.userInfo.id,
             type: e.currentTarget.dataset.type,
+            warntext: ''
             // send_time: new Date().getTime()
         }
         console.info("提醒个人传参",params);
@@ -739,4 +751,55 @@ Page({
             })
         }
     },
+    /**
+	 * 膳食提醒
+	 */
+     remindMeal1(e) {
+		let id = e.currentTarget.dataset.id; //id
+		this.setData({
+			showRemindMealDialog: true,
+            remindMeal_order_num: id
+		});
+	},
+	dialogRemindMealCancel() {
+		this.setData({
+			showRemindMealDialog: false
+		});
+	},
+	dialogRemindMealSure(e) {
+        let that = this;
+		console.log(e.detail)
+        // if(e.detail){
+            this.setData({
+                showRemindMealDialog: false
+            });
+            //
+
+            let params = {
+                s_id: that.data.remindMeal_order_num,
+                timestamp: this.data.date,
+                sender_id: app.globalData.userInfo.id,
+                type: '0',
+                warntext: e.detail,  //原因
+            }
+            console.info("提醒个人传参",params);
+            prorequest({url:'/manage/remindPerson.hn', data: params})
+            .then(result => {
+                console.info("提醒个人回调",result);
+                if (result.success) {
+                    wx.showToast({
+                        title: '提醒成功'
+                    });
+                    let passEmpty = that.selectComponent("#remindMealId");
+                    passEmpty.empty();
+                } else {
+                    wx.showToast({
+                        title: result.msg
+                    });
+                }
+            })
+        // }else{
+        //     box.showToast("请填写通过原因");
+        // }
+	},
 })
