@@ -538,7 +538,7 @@ Page({
 	dialogPassSure(e) {
         let that = this;
 		console.log(e.detail)
-        if(e.detail){
+        // if(e.detail){
             this.setData({
                 showPassDialog: false
             });
@@ -574,9 +574,9 @@ Page({
                 }
             })
             this.getTotal();
-        }else{
-            box.showToast("请填写不通过原因");
-        }
+        // }else{
+        //     box.showToast("请填写通过原因");
+        // }
 	},
     /**
 	 * 运动 不通过
@@ -662,7 +662,7 @@ Page({
 	dialogPassSportSure(e) {
         let that = this;
 		console.log(e.detail)
-        if(e.detail){
+        // if(e.detail){
             this.setData({
                 showPassSportDialog: false
             });
@@ -699,9 +699,9 @@ Page({
                 }
             })
             this.getTotal();
-        }else{
-            box.showToast("请填写不通过原因");
-        }
+        // }else{
+        //     box.showToast("请填写通过原因");
+        // }
 	},
     enter_sports: function (e) {
         let type = e.currentTarget.dataset.type;
