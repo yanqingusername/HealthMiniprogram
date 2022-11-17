@@ -63,31 +63,59 @@ Page({
         if (!(url && url.length)) {
             return;
         }
-        // wx.showLoading({
-        //     title: '文件加载中...',
-        //     mask:true,
-        //     duration:3000
-        //   })
-        box.showToast('文件加载中...')
-        wx.downloadFile({
-            url: url,
-            success: (res) => {
-                if (res.tempFilePath) {
-                    wx.openDocument({
-                        filePath: res.tempFilePath,
-                        fail: (err) => {
-                            console.error(err);
-                        },
-                        complete: () => {
-                            // wx.hideLoading();
-                        }
-                    })
-                }
-            },
-            fail: (err) => {
-                console.error(err);
-                // wx.hideLoading();
-            }
+        wx.showLoading({
+            title: '文件加载中...',
+            mask:true,
         })
+        wx.downloadFile({
+            url: url, //要预览的PDF的地址
+            timeout: 120000,
+            // filePath: wx.env.USER_DATA_PATH + '/12.pdf',
+            success: function (res) {
+              console.log(res);
+              if (res.statusCode === 200) { //成功
+                var Path = res.tempFilePath //返回的文件临时地址，用于后面打开本地预览所用
+                console.log(Path);
+                wx.openDocument({
+                  filePath: Path,
+                //   fileType: 'pdf',
+                  showMenu: false,
+                  success: function (res) {
+                  },
+                  fail: function (res) {
+                  },
+                  complete: function(){
+                    wx.hideLoading();
+                  }
+                })
+              }
+            },
+            fail: function (res) {
+              wx.hideLoading();
+            }
+          })
+
+        //   box.showToast('文件加载中...')
+        //   wx.downloadFile({
+        //       url: url,
+        //       success: (res) => {
+        //           if (res.tempFilePath) {
+        //               wx.openDocument({
+        //                   filePath: res.tempFilePath,
+        //                   fail: (err) => {
+        //                       console.error(err);
+        //                   },
+        //                   complete: () => {
+        //                       // wx.hideLoading();
+        //                   }
+        //               })
+        //           }
+        //       },
+        //       fail: (err) => {
+        //           console.error(err);
+        //           // wx.hideLoading();
+        //       }
+        //   })
+        
     }
 });
