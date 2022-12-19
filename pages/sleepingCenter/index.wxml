@@ -1,0 +1,46 @@
+<view class="page flex-col">
+  <view>
+    <view class="data_view" wx:if="{{workOutinfoList.length > 0}}">
+      <block wx:for="{{workOutinfoList}}" wx:for-item="s" wx:key="index">
+        <view class="layer1 flex-col">
+          <!-- <view class="data_title">{{s.time}}</view> -->
+          <view class="data_items">
+            <view class="data_items_title">最早入睡时间</view>
+            <view class="data_items_value">{{s.fallAsleepTime}}</view>
+          </view>
+          <view class="data_items">
+            <view class="data_items_title">最迟出睡时间</view>
+            <view class="data_items_value">{{s.wakeupTime}}</view>
+          </view>
+          <view class="data_items">
+            <view class="data_items_title">深睡时长</view>
+            <view class="data_items_value">{{s.deepSleepTime}}{{s.unit}}</view>
+          </view>
+          <view class="data_items">
+            <view class="data_items_title">做梦时长</view>
+            <view class="data_items_value">{{s.dreamTime}}{{s.unit}}</view>
+          </view>
+          <view class="data_items">
+            <view class="data_items_title">清醒时长</view>
+            <view class="data_items_value">{{s.awakeTime}}{{s.unit}}</view>
+          </view>
+          <view class="data_items">
+            <view class="data_items_title">全部时长</view>
+            <view class="data_items_value">{{s.allSleepTime}}{{s.unit}}</view>
+          </view>
+          
+          <view class="data_items" style="border-bottom: none;">
+            <view class="data_items_title">睡眠得分</view>
+            <view class="data_items_value">{{s.sleepScore}}</view>
+          </view>
+        </view>
+      </block>
+    </view>
+    <view wx:else style="display: flex;justify-content: center;align-items: center;padding: 50rpx;">
+        <view>暂无数据</view>
+    </view>
+    <view style="height: 30rpx;"></view>
+  </view>
+ 
+ 
+</view>

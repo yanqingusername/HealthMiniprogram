@@ -113,6 +113,11 @@
                 <view data-id="{{item1.hw_id}}" data-name="{{item1.name}}" bindtap="bindBullRateRange" class="remindActive" style="margin: 10rpx 22rpx 20rpx 22rpx;font-size: 30rpx;">靶心率范围</view>
                 <view data-id="{{item1.hw_id}}" data-name="{{item1.name}}" bindtap="bindHeartRateLineChart" class="remindActive" style="margin: 10rpx 22rpx 20rpx 22rpx;font-size: 30rpx;">心率折线图</view>
             </view>
+
+            <view class="content_bottom" style="height:100rpx;">
+                <view data-id="{{item1.hw_id}}" data-name="{{item1.name}}" bindtap="bindSleepingLineChart" class="remindActive" style="margin: 10rpx 22rpx 20rpx 22rpx;font-size: 30rpx;">睡眠列表</view>
+                <view data-id="{{item1.hw_id}}" data-name="{{item1.name}}" bindtap="bindRunningLineChart" class="remindActive" style="margin: 10rpx 22rpx 20rpx 22rpx;font-size: 30rpx;">运动折线图</view>
+            </view>
         </view>
 
     </view>

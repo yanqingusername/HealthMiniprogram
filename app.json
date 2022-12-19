@@ -14,8 +14,10 @@
     "pages/bullRateRange/index",
     "pages/addDietRecord/index",
     "pages/heartRateLineChart/index",
-    "pages/healthImg/index"
-    
+    "pages/healthImg/index",
+    "pages/sleepingLineChart/index",
+    "pages/runningLineChart/index",
+    "pages/sleepingCenter/index"
   ],
   "window":{
     "backgroundTextStyle":"light",

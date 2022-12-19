@@ -39,7 +39,7 @@
               </view>
               <view class="data_items" style="margin-top: 10rpx;">
                 <view class="data_items_value">单位：{{item.unit || "-"}}</view>
-                <view class="data_items_value">参考范围：{{item.reference || '-'}}</view>
+                <view class="data_items_value">{{item.reference || ''}}</view>
               </view>
             </view>
           </block>
@@ -170,7 +170,7 @@
               </view>
               <view class="data_items" style="margin-top: 10rpx;">
                 <view class="data_items_value">单位：{{item.sign_unit || "-"}}</view>
-                <view class="data_items_value">参考范围：{{item.reference || '-'}}</view>
+                <view class="data_items_value">{{item.reference || ''}}</view>
               </view>
             </view>
           </block>
@@ -223,7 +223,7 @@
               </view>
               <view class="data_items" style="margin-top: 10rpx;">
                 <view class="data_items_value">单位：{{item.sign_unit || "-"}}</view>
-                <view class="data_items_value">参考范围：{{item.reference || '-'}}</view>
+                <view class="data_items_value">{{item.reference || ''}}</view>
               </view>
             </view>
           </block>

@@ -802,4 +802,25 @@ Page({
         //     box.showToast("请填写通过原因");
         // }
 	},
+    bindSleepingLineChart: function (e) {
+        let id = e.currentTarget.dataset.id;
+        let name = e.currentTarget.dataset.name;
+        if(id){
+            // wx.navigateTo({
+            //     url: `/pages/sleepingLineChart/index?hwid=${id}&name=${name}`,
+            // })
+            wx.navigateTo({
+                url: `/pages/sleepingCenter/index?hwid=${id}&name=${name}`,
+            })
+        }
+    },
+    bindRunningLineChart: function (e) {
+        let id = e.currentTarget.dataset.id;
+        let name = e.currentTarget.dataset.name;
+        if(id){
+            wx.navigateTo({
+                url: `/pages/runningLineChart/index?hwid=${id}&name=${name}`,
+            })
+        }
+    },
 })

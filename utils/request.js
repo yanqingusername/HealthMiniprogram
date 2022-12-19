@@ -11,9 +11,11 @@
 //var apiurl = 'https://www.prohealth-wch.com:8443/wisdomLivestock'    //正式服务器
 
 // var apiurl = 'http://ygldev.coyotebio-lab.com:8080/HM'     // 测试服务器
-var apiurl = 'https://monitor.coyotebio-lab.com:8443/HM'     // 正式服务器
+// var apiurl = 'https://monitor.coyotebio-lab.com:8443/HM'     // 正式服务器
 
 // var apiurl = 'http://syrdev.coyotebio-lab.com:8080/HM'     // 测试服务器
+
+var apiurl ='http://scldev.coyotebio-lab.com:8080/HM' //测试服务器
 
 
 // 常用request get封装-异步

@@ -1,0 +1,46 @@
+<view class="page flex-col">
+  <view >
+    <view class="header">
+        <view class="bindDate" bindtap="changeTimeBefore">
+            <image src="/images/icons/triangle_left.png" mode="widthFix"></image>
+        </view>
+        <view class="date">
+            <text>{{yearmouthday}}</text>
+        </view>
+        <view class="bindDate" bindtap="changeTimeNext">
+            <image src="/images/icons/triangle_right.png" mode="widthFix"></image>
+        </view>
+      </view>
+      <view style="height: 20rpx;"></view>
+      <view class="title_view" wx:if="{{numberData}}">
+        <view style="font-size: 60rpx;">{{numberData}}</view>
+        <view style="font-size: 20rpx;margin-left:10rpx;">步/每分钟</view>
+      </view>
+    <canvas
+ style="width: 400px; height: 200px;"
+ canvas-id="runEle"
+ binderror="canvasIdErrorCallback"
+ bindtouchstart="touchcanvas"
+></canvas>
+<!-- <view style="height: 30rpx;"></view> -->
+
+<view class="view_item">
+  <view class="view_1">
+    <view class="view_1_1">运动范围</view>
+    <view class="view_1_2">
+      <view style="font-size: 36rpx;">{{min_hear_trate}}-{{max_hear_trate}}</view>
+      <view style="font-size: 20rpx;margin-left:4rpx;">步/每分钟</view>
+    </view>
+  </view>
+
+  <!-- <view class="view_1" style="background: #F5F5F5;margin-left: 30rpx;">
+    <view class="view_1_1" style="color:#999999;">运动</view>
+    <view class="view_1_2" style="color:#333333;">
+      <view style="font-size: 36rpx;">{{resting_heart_rate}}</view>
+      <view style="font-size: 20rpx;margin-left:4rpx;">次/每分钟</view>
+    </view>
+  </view> -->
+</view>
+
+  </view>
+</view>
